@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        <span>{{'label.notify' | translate}}</span>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="table-responsive">
+        <table class="table table-bordered table-head-fixed">
+            <thead>
+                <tr>
+                    <th class="minw-150 bg-dark-blue">{{'label.name' | translate}}</th>
+                    <th class="w-100 bg-dark-blue">{{'label.status' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of userConfirmList; track $index; let odd = $odd) {
+                    <tr>
+                        <td [class.bg-bady-blue]="odd">{{item.name}}</td>
+                        @if (item.status) {
+                            <td [class.bg-bady-blue]="odd">{{'label.confirmed' | translate}}</td>
+                        } @else {
+                            <td [class.bg-bady-blue]="odd">{{'label.unconfirmed' | translate}}</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

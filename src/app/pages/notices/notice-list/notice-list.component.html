@@ -1,0 +1,109 @@
+<app-content-header [pageTitle]="'label.transfer' | translate"
+    [breadcrumbs]="'label.transfer' | translate"></app-content-header>
+<fieldset class="search-box">
+    <legend>{{'label.search' | translate}}</legend>
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="keyword"
+                        placeholder="{{ 'label.keyword' | translate }}" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button class="btn btn-danger mr-2" type="button" (click)="onResetSearch()">
+                    <i class="fa fa-eraser mr-2"></i>{{ 'label.reset' | translate }}
+                </button>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-search mr-2"></i>{{ 'label.search' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</fieldset>
+<div class="action-box">
+    <div class="row column-reverse">
+        <div class="col align-self-end">
+            {{'label.search_result_count' | translate}}: <span
+                class="search-result-total-count">{{searchResultCount}}{{'label.record' | translate}}</span>
+        </div>
+        <div class="col-auto btns-box">
+            <button *ngIf="userRole?.update_role === 1" class="btn btn-primary" type="button" [routerLink]="'create'">
+                <i class="fa fa-plus mr-2"></i>{{ 'label.add' | translate }}
+            </button>
+            <button class="btn btn-primary" type="button" (click)="onGoBack()">
+                <i class="mr-2 fa-solid fa-xmark"></i>{{'label.close' | translate}}
+            </button>
+        </div>
+    </div>
+</div>
+<!-- /.action-box -->
+<div class="card notice">
+    <div class="card-body">
+        <div class="table-responsive">
+            <!-- [filterData]="noticeTable?.filter_table" -->
+            <table tableFilter
+                [url]="Constants.API_URL.NOTICES.FILTER_COLUMN"
+                (filterChanged)="filterChanged($event)"
+                class="table table-bordered table-head-fixed">
+                <thead>
+                    <tr>
+                        <th columnFilterName="notice_no" class="w-110 text-right">
+                            {{'label.control_number' | translate}}
+                        </th>
+                        <th columnFilterName="subject" class="minw-200">
+                            {{ 'label.subject' | translate }}
+                        </th>
+                        <th columnFilterName="office_subname" class="w-160">
+                            {{ 'label.office' | translate }}
+                        </th>
+                        <th columnFilterName="candidate" class="w-140">
+                            {{ 'label.status' | translate }}
+                        </th>
+                        <th columnFilterName="send_type" class="w-140">
+                            {{ 'label.transmission_reception' | translate }}
+                        </th>
+                        <th columnFilterName="event_date" class="w-170">
+                            {{ 'label.occurrence_date' | translate }}
+                        </th>
+                        <th columnFilterName="close_datetime" class="w-170">
+                            {{ 'label.complete_date' | translate }}
+                        </th>
+                    </tr>
+                </thead>
+                @if (Lib.isValidArrayData(noticeTable?.data_source)) {
+                <tbody>
+                    @for (item of noticeTable?.data_source; track $index) {
+                    <tr>
+                        <td class="text-right">{{item.notice_no}}</td>
+                        <td>
+                            <a class="blue d-inline" (click)="onDetail(item.notice_no)">
+                                <span>{{item.subject}}</span>
+                            </a>
+                        </td>
+                        <td>{{item.office_subname}}</td>
+                        <td>{{ item.candidate }}</td>
+                        <td>
+                            {{item.send_type}}
+                        </td>
+                        <td>{{item.event_date}}</td>
+                        <td>{{item.close_datetime}}</td>
+                    </tr>
+                    }
+                </tbody>
+                } @else {
+                <tfoot>
+                    <tr>
+                        <td colspan="7">{{'message.no_data' | translate}}</td>
+                    </tr>
+                </tfoot>
+                }
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+        <app-pagination [page]="currentPage" [totalRow]="searchResultCount" (changePage)="onPaginationChange($event)">
+        </app-pagination>
+    </div>
+</div>

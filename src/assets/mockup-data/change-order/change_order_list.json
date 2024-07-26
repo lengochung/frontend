@@ -1,0 +1,294 @@
+{
+    "status": "true",
+	"data":  {
+        "records": [
+            {
+                "id": 1,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名A",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/20 08:01:02",
+                "close_datetime": "2024/06/20 10:10:11"
+            },
+            {
+                "id": 2,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名B",
+                "version_number": 1,
+                "status": 2,
+                "application_period": "2024/06/19 08:01:02",
+                "close_datetime": "2024/06/19 10:10:11"
+            },
+            {
+                "id": 3,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名C",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/18 08:01:02",
+                "close_datetime": "2024/06/18 10:10:11"
+            },
+            {
+                "id": 4,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名D",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/17 08:01:02",
+                "close_datetime": "2024/06/17 10:10:11"
+            },
+            {
+                "id": 5,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名E",
+                "version_number": 1,
+                "status": 2,
+                "application_period": "2024/06/16 08:01:02",
+                "close_datetime": "2024/06/16 10:10:11"
+            },
+            {
+                "id": 6,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名F",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/15 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 7,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名G",
+                "version_number": 1,
+                "status": 2,
+                "application_period": "2024/06/14 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 8,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名H",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/13 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 9,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名I",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/12 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 10,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名J",
+                "version_number": 1,
+                "status": 2,
+                "application_period": "2024/06/11 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 11,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名K",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/10 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 12,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名L",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/09 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 13,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名M",
+                "version_number": 1,
+                "status": 2,
+                "application_period": "2024/06/08 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 14,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名N",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/07 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 15,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名O",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/06 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 16,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名P",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/05 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 17,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名Q",
+                "version_number": 1,
+                "status": 2,
+                "application_period": "2024/06/04 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 18,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名R",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/03 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 19,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名S",
+                "version_number": 1,
+                "status": 1,
+                "application_period": "2024/06/02 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            },
+            {
+                "id": 20,
+                "office_id": 1,
+                "office_name": "事業所A",
+                "subject": "件名T",
+                "version_number": 1,
+                "status": 2,
+                "application_period": "2024/06/01 08:01:02",
+                "close_datetime": "2024/06/15 10:10:11"
+            }
+        ],
+        "filter_table": {
+            "filter": {
+                "id": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 3,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 4,
+                        "is_checked": true
+                    }
+                ],
+                "application_period": [
+                    {
+                        "name": "2024/06/15 08:01:02",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "2024/06/15 09:01:02",
+                        "is_checked": true
+                    }
+                ],
+                "subject": [
+                    {
+                        "name": "件名A",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "件名B",
+                        "is_checked": true
+                    }
+                ],
+                "office": [
+                    {
+                        "name": "事業所A",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "事業所B",
+                        "is_checked": true
+                    }
+                ],
+                "version_number": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    }
+                ],
+                "status": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    }
+                ],
+                "close_datetime": [
+                    {
+                        "name": "2024/06/15 08:01:02",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "2024/06/15 09:01:02",
+                        "is_checked": true
+                    }
+                ]
+            },
+            "sort": {
+                "column": "",
+                "direction": ""
+            }
+        }
+    },
+    "total_row": 200
+}

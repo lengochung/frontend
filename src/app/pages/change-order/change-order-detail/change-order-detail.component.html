@@ -1,0 +1,460 @@
+@if (isEdit) {
+<app-content-header
+    [pageTitle]="'label.detail' | translate"
+    [breadcrumbs]="breadcrumbsDetail"
+></app-content-header>
+} @else {
+<app-content-header
+    [pageTitle]="'label.create' | translate"
+    [breadcrumbs]="breadcrumbsCreate"
+></app-content-header>
+}
+<div class="card" id="change-order-detail">
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSave()">
+            <div class="action-box">
+                <div class="btns-box">
+                    <button
+                        (click)="onCreateNew()"
+                        class="btn btn-primary"
+                        type="button"
+                    >
+                        <i class="mr-2 fa-solid fa-plus"></i
+                        >{{ "label.new_request" | translate }}
+                    </button>
+                    <button class="btn btn-primary" type="button">
+                        {{ "label.revision" | translate }}
+                    </button>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="mr-2 fa fa-save"></i
+                        >{{ "label.save" | translate }}
+                    </button>
+                    <button class="btn btn-primary" type="button">
+                        <i class="mr-2 fa-solid fa-arrow-right-arrow-left"></i>
+                        {{ "label.forward" | translate }}
+                    </button>
+                    <button class="btn btn-primary" type="button">
+                        {{ "label.pdf" | translate }}
+                    </button>
+                    <button
+                        class="btn btn-primary"
+                        type="button"
+                        (click)="onGoBack()"
+                    >
+                        <i class="mr-2 fa-solid fa-xmark"></i
+                        >{{ "label.close" | translate }}
+                    </button>
+                </div>
+            </div>
+            <!-- /.action -->
+            @if (Lib.isValidArrayData(validator.errors)) {
+            <div class="row">
+                <div class="col-12">
+                    <app-form-errors
+                        [errors]="validator.errors"
+                    ></app-form-errors>
+                </div>
+            </div>
+            }
+            <div class="table-responsive">
+                <table class="table table-bordered table-form table-header">
+                    <tbody>
+                        <tr>
+                            <td class="w-110 label-cell bg-dark-blue">
+                                {{ "label.control_number" | translate }}
+                            </td>
+                            <td class="w-110 bg-bady-blue">
+                                {{ changeOrderInfo?.id }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.office" | translate }}
+                            </td>
+                            <td class="bg-bady-blue">
+                                {{ changeOrderInfo?.office_name }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.status" | translate }}
+                            </td>
+                            <td class="bg-bady-blue w-100">
+                                {{ getStatusName(changeOrderInfo?.status) }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.version_number" | translate }}
+                            </td>
+                            <td class="bg-bady-blue w-40">
+                                {{ changeOrderInfo?.latest_version }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.header table -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-head-fixed table-form">
+                    <tbody>
+                        <tr>
+                            <td rowspan="14" class="bg-blue w-110">
+                                {{ "label.change_order" | translate }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.subject" | translate }}
+                            </td>
+                            <td colspan="3">
+                                <input
+                                    formControlName="subject"
+                                    type="text"
+                                    class="form-control full-width"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{
+                                    "label.target_standard_document" | translate
+                                }}
+                            </td>
+                            <td colspan="3">
+                                <div>
+                                    <button
+                                        class="btn btn-primary"
+                                        type="button"
+                                    >
+                                        {{ "label.select" | translate }}
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.items_to_be_changed" | translate }}
+                            </td>
+                            <td colspan="3">
+                                <textarea
+                                    formControlName="change_item"
+                                    rows="4"
+                                    class="full-width form-control"
+                                ></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{
+                                    "label.before_change_regulations"
+                                        | translate
+                                }}
+                            </td>
+                            <td colspan="3">
+                                <textarea
+                                    formControlName="before_change"
+                                    rows="4"
+                                    class="full-width form-control"
+                                ></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.changes" | translate }}
+                            </td>
+                            <td colspan="3">
+                                <textarea
+                                    formControlName="content_change"
+                                    rows="4"
+                                    class="full-width form-control"
+                                ></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                <div>
+                                    {{
+                                        "label.changes_to_be_applied"
+                                            | translate
+                                    }}
+                                </div>
+                                <div>{{ "label.scope" | translate }}</div>
+                            </td>
+                            <td colspan="3">
+                                <textarea
+                                    formControlName="scope"
+                                    rows="4"
+                                    class="full-width form-control"
+                                ></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{
+                                    "label.start_date_of_application_period"
+                                        | translate
+                                }}
+                            </td>
+                            <td class="minw-180">
+                                <div class="date-picker-group m-0">
+                                    <input
+                                        formControlName="start_date_application"
+                                        class="form-control control-date-picker input-group-text"
+                                        placeholder="YYYY/MM/DD"
+                                        [readonly]="true"
+                                        name="start_date"
+                                        maxlength="10"
+                                        (click)="startDate.toggle()"
+                                        ngbDatepicker
+                                        #startDate="ngbDatepicker"
+                                    />
+                                    <div
+                                        class="input-group-append cursor-pointer"
+                                        (click)="startDate.toggle()"
+                                    >
+                                        <span class="input-group-text"
+                                            ><i class="fa fa-calendar"></i
+                                        ></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{
+                                    "label.end_date_of_applicable_period"
+                                        | translate
+                                }}
+                            </td>
+                            <td class="minw-300">
+                                <div class="date-picker-group m-0">
+                                    <input
+                                        formControlName="end_date_application"
+                                        class="form-control control-date-picker input-group-text"
+                                        placeholder="YYYY/MM/DD"
+                                        [readonly]="true"
+                                        maxlength="10"
+                                        (click)="sendDate.toggle()"
+                                        ngbDatepicker
+                                        #sendDate="ngbDatepicker"
+                                    />
+                                    <div
+                                        class="input-group-append cursor-pointer"
+                                        (click)="sendDate.toggle()"
+                                    >
+                                        <span class="input-group-text"
+                                            ><i class="fa fa-calendar"></i
+                                        ></span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{
+                                    "label.supplementary_explanation"
+                                        | translate
+                                }}
+                            </td>
+                            <td colspan="3">
+                                <textarea
+                                    formControlName="additional_explanation"
+                                    rows="4"
+                                    class="full-width form-control"
+                                ></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{
+                                    "label.attached_file" | translate
+                                }}</span>
+                            </td>
+                            <td colspan="3">
+                                <app-upload></app-upload>
+                            </td>
+                        </tr>
+                        <!-- /.attachment -->
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.forward_proposer" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ changeOrderInfo?.transfer_user }}
+                            </td>
+                            <td class="bg-bady-blue">
+                                {{ changeOrderInfo?.transfer_date }}
+                            </td>
+                        </tr>
+                        <!-- /.forward_proposer -->
+                        <tr>
+                            <td rowspan="2" class="label-cell bg-dark-blue">
+                                {{ "label.approval1" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ changeOrderInfo?.approval_user1 }}
+                            </td>
+                            <!-- /.approval user1 -->
+                            <td rowspan="2" class="bg-bady-blue">
+                                {{ changeOrderInfo?.approval_comment1 }}
+                            </td>
+                            <!-- /.comment1 -->
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ changeOrderInfo?.approval_datetime1 }}
+                            </td>
+                            <!-- /.approval datetime1 -->
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="label-cell bg-dark-blue">
+                                {{ "label.approval2" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ changeOrderInfo?.approval_user2 }}
+                            </td>
+                            <!-- /.approval user2 -->
+                            <td rowspan="2" class="bg-bady-blue">
+                                {{ changeOrderInfo?.approval_comment2 }}
+                            </td>
+                            <!-- /.comment2 -->
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ changeOrderInfo?.approval_datetime2 }}
+                            </td>
+                            <!-- /.approval datetime2 -->
+                        </tr>
+
+                        <tr>
+                            <td rowspan="9" class="bg-midnight-blue">
+                                {{
+                                    "label.change_completion_procedure"
+                                        | translate
+                                }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.closing_comment" | translate }}
+                            </td>
+                            <td colspan="3">
+                                <textarea
+                                    formControlName="closing_comment"
+                                    rows="4"
+                                    class="full-width form-control"
+                                ></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{
+                                    "label.attached_file" | translate
+                                }}</span>
+                            </td>
+                            <td colspan="3">
+                                <app-upload></app-upload>
+                            </td>
+                        </tr>
+                        <!-- /.attachment -->
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{
+                                    "label.deciding_whether_to_end_the_project"
+                                        | translate
+                                }}
+                            </td>
+                            <td colspan="3">
+                                <ng-select
+                                    formControlName="is_end"
+                                    [items]="endList"
+                                    [bindLabel]="'name'"
+                                    [bindValue]="'id'"
+                                    [notFoundText]="
+                                        'message.no_data' | translate
+                                    "
+                                    [typeToSearchText]="
+                                        'label.type_to_search' | translate
+                                    "
+                                    [appendTo]="'#change-order-detail'"
+                                    [clearable]="false"
+                                ></ng-select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{
+                                    "label.decide_whether_to_make_it_permanent"
+                                        | translate
+                                }}
+                            </td>
+                            <td colspan="3">
+                                <ng-select
+                                    formControlName="is_permanent"
+                                    [items]="permanentList"
+                                    [bindLabel]="'name'"
+                                    [bindValue]="'id'"
+                                    [notFoundText]="
+                                        'message.no_data' | translate
+                                    "
+                                    [typeToSearchText]="
+                                        'label.type_to_search' | translate
+                                    "
+                                    [appendTo]="'#change-order-detail'"
+                                    [clearable]="false"
+                                ></ng-select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.forward_proposer" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ changeOrderInfo?.complete_transfer_user }}
+                            </td>
+                            <td class="bg-bady-blue">
+                                {{ changeOrderInfo?.complete_transfer_date }}
+                            </td>
+                        </tr>
+                        <!-- /.forward_proposer -->
+                        <tr>
+                            <td rowspan="2" class="label-cell bg-dark-blue">
+                                {{ "label.approval1" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ changeOrderInfo?.complete_approval_user1 }}
+                            </td>
+                            <!-- /.approval user1 -->
+                            <td rowspan="2" class="bg-bady-blue">
+                                {{
+                                    changeOrderInfo?.complete_approval_comment1
+                                }}
+                            </td>
+                            <!-- /.comment1 -->
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{
+                                    changeOrderInfo?.complete_approval_datetime1
+                                }}
+                            </td>
+                            <!-- /.approval datetime1 -->
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="label-cell bg-dark-blue">
+                                {{ "label.approval2" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ changeOrderInfo?.complete_approval_user2 }}
+                            </td>
+                            <!-- /.approval user2 -->
+                            <td rowspan="2" class="bg-bady-blue">
+                                {{
+                                    changeOrderInfo?.complete_approval_comment2
+                                }}
+                            </td>
+                            <!-- /.comment2 -->
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{
+                                    changeOrderInfo?.complete_approval_datetime2
+                                }}
+                            </td>
+                            <!-- /.approval datetime2 -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>

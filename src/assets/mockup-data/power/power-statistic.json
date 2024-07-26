@@ -1,0 +1,8 @@
+{
+    "status": "true",
+    "data": {
+        "current": 70,
+        "month": 80,
+        "tomorrow": 60
+    }
+}

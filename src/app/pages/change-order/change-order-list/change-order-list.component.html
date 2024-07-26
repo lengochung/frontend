@@ -1,0 +1,144 @@
+<app-content-header
+    [pageTitle]="'label.change_order_document' | translate"
+    [breadcrumbs]="'label.change_order_document' | translate"
+></app-content-header>
+<fieldset class="search-box">
+    <legend>{{ "label.search" | translate }}</legend>
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="keyword"
+                        placeholder="{{ 'label.keyword' | translate }}"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button
+                    class="btn btn-danger mr-2"
+                    type="button"
+                    (click)="onResetSearch()"
+                >
+                    <i class="fa fa-eraser mr-2"></i
+                    >{{ "label.reset" | translate }}
+                </button>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-search mr-2"></i
+                    >{{ "label.search" | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</fieldset>
+<div class="action-box">
+    <div class="row column-reverse">
+        <div class="col align-self-end">
+            {{ "label.search_result_count" | translate }}:
+            <span class="search-result-total-count"
+                >{{ searchResultCount }}{{ "label.record" | translate }}</span
+            >
+        </div>
+        <div class="col-auto btns-box">
+            <button
+                class="btn btn-primary"
+                type="button"
+                [routerLink]="'create'"
+            >
+                <i class="fa fa-plus mr-2"></i
+                >{{ "label.new_registration" | translate }}
+            </button>
+            <button class="btn btn-primary" type="button">
+                <i class="fa-solid fa-file-csv mr-2"></i
+                >{{ "label.csv" | translate }}
+            </button>
+            <button class="btn btn-primary" type="button" (click)="onGoBack()">
+                <i class="mr-2 fa-solid fa-xmark"></i
+                >{{ "label.close" | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+<!-- /.action-box -->
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table
+                tableFilter
+                [filterData]="changeOrderTable?.filter_table"
+                class="table table-bordered table-head-fixed"
+            >
+                <thead>
+                    <tr>
+                        <th columnFilterName="id" class="w-110 text-right">
+                            {{ "label.control_number" | translate }}
+                        </th>
+                        <th columnFilterName="subject" class="minw-180">
+                            {{ "label.subject" | translate }}
+                        </th>
+                        <th columnFilterName="version_number" class="w-100">
+                            {{ "label.version_number" | translate }}
+                        </th>
+                        <th columnFilterName="office" class="w-200">
+                            {{ "label.office" | translate }}
+                        </th>
+                        <th
+                            columnFilterName="status"
+                            [displayData]="statusData"
+                            class="w-140"
+                        >
+                            {{ "label.status" | translate }}
+                        </th>
+                        <th columnFilterName="application_period" class="w-180">
+                            {{ "label.application_period" | translate }}
+                        </th>
+                        <th columnFilterName="close_datetime" class="w-180">
+                            {{ "label.close_date" | translate }}
+                        </th>
+                    </tr>
+                </thead>
+                @if (Lib.isValidArrayData(changeOrderTable?.records)) {
+                <tbody>
+                    @for (item of changeOrderTable?.records; track $index) {
+                    <tr>
+                        <td class="text-right">
+                            {{ item.id }}
+                        </td>
+                        <td>
+                            <a
+                                class="blue d-inline"
+                                (click)="onDetail(item.id)"
+                            >
+                                <span>{{ item.subject }}</span>
+                            </a>
+                        </td>
+                        <td class="text-right">{{ item.version_number }}</td>
+                        <td>{{ item.office_name }}</td>
+                        <td>{{ getStatusName(item.status) }}</td>
+                        <td>{{ item.application_period }}</td>
+                        <td>{{ item.close_datetime }}</td>
+                    </tr>
+                    }
+                </tbody>
+                } @else {
+                <tfoot>
+                    <tr>
+                        <td colspan="7">{{ "message.no_data" | translate }}</td>
+                    </tr>
+                </tfoot>
+                }
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+        <app-pagination
+            [page]="currentPage"
+            [totalRow]="searchResultCount"
+            (changePage)="onPaginationChange($event)"
+        >
+        </app-pagination>
+    </div>
+</div>

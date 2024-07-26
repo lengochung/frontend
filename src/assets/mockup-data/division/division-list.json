@@ -1,0 +1,210 @@
+{
+    "status": "true",
+    "total_row": 200,
+    "data": {
+        "data_source": [
+            {
+                "division_id": 1,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "起票中"
+            },
+            {
+                "division_id": 2,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "是正処置計画中"
+            },
+            {
+                "division_id": 3,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "是正処置実施中"
+            },
+            {
+                "division_id": 4,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "クローズ"
+            },
+            {
+                "division_id": 5,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "顧客クレーム"
+            },
+            {
+                "division_id": 6,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "製造障害"
+            },
+            {
+                "division_id": 7,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "原動障害"
+            },
+            {
+                "division_id": 8,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "監査上の問題"
+            },
+            {
+                "division_id": 9,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "設計開発上の問題"
+            },
+            {
+                "division_id": 10,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "購買品の受入検査上の問題"
+            },
+            {
+                "division_id": 11,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "その他"
+            },
+            {
+                "division_id": 12,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "有"
+            },
+            {
+                "division_id": 13,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "無"
+            },
+            {
+                "division_id": 14,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "要"
+            },
+            {
+                "division_id": 15,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "否"
+            },
+            {
+                "division_id": 16,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "OK"
+            },
+            {
+                "division_id": 17,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "NG"
+            },
+            {
+                "division_id": 18,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "起票中"
+            },
+            {
+                "division_id": 19,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "予防処置計画中"
+            },
+            {
+                "division_id": 20,
+                "business": 1,
+                "report": 1,
+                "field": 1,
+                "suggestion": "予防処置実施中"
+            }
+        ],
+        "filter_table": {
+            "filter": {
+                "business": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 3,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 4,
+                        "is_checked": true
+                    }
+                ],
+                "report": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 3,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 4,
+                        "is_checked": true
+                    }
+                ],
+                "field": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 3,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 4,
+                        "is_checked": true
+                    }
+                ]
+            },
+            "sort": {
+                "column": "",
+                "direction": ""
+            }
+        }
+    }
+}

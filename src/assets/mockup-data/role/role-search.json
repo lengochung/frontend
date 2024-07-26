@@ -1,0 +1,14 @@
+{
+    "status": "true",
+    "total_row": 2,
+    "data": [
+        {
+            "role_id": 3,
+            "role_name": "User"
+        },
+        {
+            "role_id": 4,
+            "role_name": "Guest"
+        }
+    ]
+}

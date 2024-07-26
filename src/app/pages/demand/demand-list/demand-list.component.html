@@ -1,0 +1,199 @@
+<app-content-header
+    [pageTitle]="'label.power_demand_management' | translate"
+    [breadcrumbs]="
+        'label.power_demand_management' | translate
+    "
+></app-content-header>
+<fieldset class="search-box">
+    <legend>{{ "label.search" | translate }}</legend>
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="keyword"
+                        placeholder="{{ 'label.keyword' | translate }}"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button
+                    class="btn btn-danger mr-2"
+                    type="button"
+                    (click)="onResetSearch()"
+                >
+                    <i class="fa fa-eraser mr-2"></i
+                    >{{ "label.reset" | translate }}
+                </button>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-search mr-2"></i
+                    >{{ "label.search" | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</fieldset>
+<div class="action-box">
+    <div class="row column-reverse">
+        <div class="col align-self-end">
+            {{ "label.search_result_count" | translate }}:
+            <span class="search-result-total-count"
+                >{{ searchResultCount }}{{ "label.record" | translate }}</span
+            >
+        </div>
+        <div class="col-auto btns-box">
+            <button
+                class="btn btn-primary"
+                type="button"
+                [routerLink]="'create'"
+            >
+                <i class="fa fa-plus mr-2"></i>{{ "label.add" | translate }}
+            </button>
+            <button
+                class="btn btn-primary"
+                type="button"
+            >
+                <i class="fa-solid fa-file-csv mr-2"></i
+                >{{ "label.csv" | translate }}
+            </button>
+            <button class="btn btn-primary" type="button" (click)="onGoBack()">
+                <i class="mr-2 fa-solid fa-xmark"></i
+                >{{ "label.close" | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+<!-- /.action-box -->
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table
+                tableFilter
+                [filterData]="demandTable?.filter_table"
+                class="table table-bordered table-head-fixed"
+            >
+                <thead>
+                    <tr>
+                        <th columnFilterName="control_number" class="w-110">
+                            {{ "label.control_number" | translate }}
+                        </th>
+                        <th columnFilterName="form_type" [displayData]="formTypeData" class="minw-180">
+                            {{
+                                "label.init_setting_or_management_form"
+                                    | translate
+                            }}
+                        </th>
+                        <th
+                            columnFilterName="office"
+                            class="w-180"
+                        >
+                            {{ "label.office" | translate }}
+                        </th>
+                        <th
+                            columnFilterName="date_actual"
+                            class="w-180"
+                        >
+                            {{ "label.date_actual" | translate }}
+                        </th>
+                        <th
+                            columnFilterName="demand_prediction_curve_confirmation_results"
+                            class="w-180"
+                        >
+                            {{
+                                "label.demand_prediction_curve_confirmation_results"
+                                    | translate
+                            }}
+                        </th>
+                        <th columnFilterName="maximum_demand" class="w-180">
+                            {{ "label.maximum_demand" | translate }}
+                        </th>
+                        <th columnFilterName="maximum_demand_time" class="w-180">
+                            {{ "label.maximum_demand_time" | translate }}
+                        </th>
+                        <th columnFilterName="contract_power_surplus" class="w-180">
+                            {{ "label.contract_power_surplus" | translate }}
+                        </th>
+                        <th columnFilterName="target_demand_surplus" class="w-180">
+                            {{ "label.target_demand_surplus" | translate }}
+                        </th>
+                        <th columnFilterName="results_control_measures" class="w-180">
+                            {{ "label.results_control_measures" | translate }}
+                        </th>
+                        <th
+                            columnFilterName="prediction_difference_control_measures"
+                            class="w-180"
+                        >
+                            {{
+                                "label.prediction_difference_control_measures"
+                                    | translate
+                            }}
+                        </th>
+                        <th
+                            columnFilterName="number_times_target_demand_is_exceeded"
+                            class="w-180"
+                        >
+                            {{
+                                "label.number_times_target_demand_is_exceeded"
+                                    | translate
+                            }}
+                        </th>
+                        <th
+                            columnFilterName="status" [displayData]="statusData"
+                            class="w-150"
+                        >
+                            {{ "label.status" | translate }}
+                        </th>
+                    </tr>
+                </thead>
+                @if (Lib.isValidArrayData(demandTable?.data_source)) {
+                <tbody>
+                    @for (item of demandTable?.data_source; track $index)
+                    {
+                    <tr>
+                        <td class="text-right">{{item.id}}</td>
+                        <td>
+                            <a
+                                class="blue d-inline"
+                                (click)="onDetail(item)"
+                            >
+                                <span>{{ getFormTypeName(item.form_type) }}</span>
+                            </a>
+                        </td>
+                        <td>{{item.office_name}}</td>
+                        <td>{{item.date_actual}}</td>
+                        <td>{{item.demand_prediction_curve_confirmation_results}}</td>
+                        <td>{{item.maximum_demand}}</td>
+                        <td>{{item.maximum_demand_time}}</td>
+                        <td>{{item.contract_power_surplus}}</td>
+                        <td>{{item.target_demand_surplus}}</td>
+                        <td>{{item.results_control_measures}}</td>
+                        <td>{{item.prediction_difference_control_measures}}</td>
+                        <td>{{item.number_times_target_demand_is_exceeded}}</td>
+                        <td>{{item.status}}</td>
+                    </tr>
+                    }
+                </tbody>
+                } @else {
+                <tfoot>
+                    <tr>
+                        <td colspan="13">
+                            {{ "message.no_data" | translate }}
+                        </td>
+                    </tr>
+                </tfoot>
+                }
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+        <app-pagination
+            [page]="currentPage"
+            [totalRow]="searchResultCount"
+            (changePage)="onPaginationChange($event)"
+        >
+        </app-pagination>
+    </div>
+</div>

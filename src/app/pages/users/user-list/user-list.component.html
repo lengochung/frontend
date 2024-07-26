@@ -1,0 +1,140 @@
+<app-content-header
+    [pageTitle]="'label.user_management' | translate"
+    [breadcrumbs]="'label.user_management' | translate"></app-content-header>
+<fieldset class="search-box">
+    <legend>{{ 'label.search' | translate }}</legend>
+    <form
+        [formGroup]="searchForm"
+        (ngSubmit)="onSearch()">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="keyword"
+                        placeholder="{{ 'label.keyword' | translate }}" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button
+                    class="btn btn-danger mr-2"
+                    type="button"
+                    (click)="onResetSearch()">
+                    <i class="fa fa-eraser mr-2"></i>{{ 'label.reset' | translate }}
+                </button>
+                <button
+                    class="btn btn-primary"
+                    type="submit">
+                    <i class="fa fa-search mr-2"></i>{{ 'label.search' | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</fieldset>
+<div class="action-box">
+    <div class="row column-reverse">
+        <div class="col align-self-end">
+            {{ 'label.search_result_count' | translate }}:
+            <span class="search-result-total-count">{{ searchResultCount }}{{ 'label.record' | translate }}</span>
+        </div>
+        <div class="col-auto btns-box">
+            <button
+                class="btn btn-primary"
+                type="button"
+                [routerLink]="'create'">
+                <i class="fa fa-plus mr-2"></i>{{ 'label.add' | translate }}
+            </button>
+            <button
+                class="btn btn-primary"
+                type="button"
+                (click)="onGoBack()">
+                <i class="mr-2 fa-solid fa-xmark"></i>{{ 'label.close' | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+<!-- /.action-box -->
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-head-fixed">
+                <thead>
+                    <tr>
+                        <th class="minw-160">{{ 'label.name' | translate }}</th>
+                        <th class="w-160">{{ 'label.employee_no' | translate }}</th>
+                        <th class="w-160">{{ 'label.position' | translate }}</th>
+                        <th class="w-160">{{ 'label.affiliation' | translate }}</th>
+                        <th class="w-210">{{ 'label.email' | translate }}</th>
+                        <th class="w-150">{{ 'label.permission' | translate }}</th>
+                        <th class="w-140">{{ 'label.user_registration_date' | translate }}</th>
+                        <th class="w-140">{{ 'label.basic_information_update_date' | translate }}</th>
+                        <th class="w-140">{{ 'label.permission_setting_update_date' | translate }}</th>
+                        <th class="w-140">{{ 'label.password_update_date' | translate }}</th>
+                        <th class="w-90 text-center"></th>
+                    </tr>
+                </thead>
+                @if (Lib.isValidArrayData(userList)) {
+                <tbody>
+                    @for (item of userList; track $index) {
+                    <tr>
+                        <td>{{ item.user_first_name }} {{ item.user_last_name }}</td>
+                        <td>{{ item.employee_no }}</td>
+                        <td>{{ item.position }}</td>
+                        <td>{{ item.affiliation }}</td>
+                        <td>{{ item.mail }}</td>
+                        <td>
+                            @if (item.role_name) {
+                                {{ item.role_name }}
+                            } @else {
+                                {{ 'label.can_not_login' | translate}}
+                            }
+                        </td>
+                        <td>{{ item.add_datetime | date: 'yyyy-MM-dd'}}</td>
+                        <td>{{ item.update_date }}</td>
+                        <td>{{ item.role_update_date }}</td>
+                        <td>{{ item.password_update_date }}</td>
+                        <td class="text-center">
+                            <div class="tbl-btn-group">
+                                <a
+                                    (click)="onDetail(item.user_id)"
+                                    class="detail"
+                                    title="{{ 'label.detail' | translate }}"
+                                    ><i class="fas fa-info-circle"></i
+                                ></a>
+                                <a
+                                    (click)="onEdit(item.user_id)"
+                                    class="edit"
+                                    title="{{ 'label.edit' | translate }}"
+                                    ><i class="fas fa-edit"></i
+                                ></a>
+                                <a
+                                    (click)="onDelete(item)"
+                                    class="del"
+                                    title="{{ 'label.delete' | translate }}"
+                                    ><i class="fas fa-trash-alt"></i
+                                ></a>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+                } @else {
+                <tfoot>
+                    <tr>
+                        <td colspan="11">{{ 'message.no_data' | translate }}</td>
+                    </tr>
+                </tfoot>
+                }
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+        <app-pagination
+            [page]="currentPage"
+            [totalRow]="searchResultCount"
+            (changePage)="onPaginationChange($event)">
+        </app-pagination>
+    </div>
+</div>

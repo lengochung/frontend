@@ -1,0 +1,151 @@
+<app-content-header
+    [pageTitle]="'label.group_management' | translate"
+    [breadcrumbs]="'label.group_management' | translate"
+></app-content-header>
+<fieldset class="search-box">
+    <legend>{{ "label.search" | translate }}</legend>
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        formControlName="keyword"
+                        placeholder="{{ 'label.keyword' | translate }}"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button
+                    class="btn btn-danger mr-2"
+                    type="button"
+                    (click)="onResetSearch()"
+                >
+                    <i class="fa fa-eraser mr-2"></i
+                    >{{ "label.reset" | translate }}
+                </button>
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa fa-search mr-2"></i
+                    >{{ "label.search" | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</fieldset>
+<div class="action-box">
+    <div class="row column-reverse">
+        <div class="col align-self-end">
+            {{ "label.search_result_count" | translate }}:
+            <span class="search-result-total-count"
+                >{{ searchResultCount }}{{ "label.record" | translate }}</span
+            >
+        </div>
+        <div class="col-auto btns-box">
+            @if (isAdmin) {
+                <button
+                    class="btn btn-primary"
+                    type="button"
+                    [routerLink]="'create'"
+                >
+                    <i class="fa fa-plus mr-2"></i
+                    >{{ "label.new_registration" | translate }}
+                </button>
+            }
+            <button class="btn btn-primary" type="button" (click)="onGoBack()">
+                <i class="mr-2 fa-solid fa-xmark"></i
+                >{{ "label.close" | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+<!-- /.action-box -->
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table
+                tableFilter
+                [filterData]="groupTable?.filter_table"
+                class="table table-bordered table-head-fixed"
+            >
+                <thead>
+                    <tr>
+                        <th columnFilterName="group_name" class="w-200">
+                            {{ "label.group_name" | translate }}
+                        </th>
+                        <th columnFilterName="description" class="minw-200">
+                            {{ "label.description" | translate }}
+                        </th>
+                        <th
+                            columnFilterName="number_user_register"
+                            class="w-120 text-right"
+                        >
+                            {{ "label.number_user_register" | translate }}
+                        </th>
+                        <th
+                            columnFilterName="add_datetime"
+                            class="w-140"
+                        >
+                            {{ "label.group_registration_date" | translate }}
+                        </th>
+                        <th columnFilterName="upd_datetime" class="w-140">
+                            {{ "label.group_update_date" | translate }}
+                        </th>
+                        @if (isAdmin) {
+                            <th class="w-50"></th>
+                        }
+                    </tr>
+                </thead>
+                @if (Lib.isValidArrayData(groupTable?.records)) {
+                <tbody>
+                    @for (item of groupTable?.records; track $index) {
+                    <tr>
+                        <td>
+                            <a
+                                class="blue d-inline"
+                                (click)="onDetail(item.group_id)"
+                            >
+                                <span>{{ item.group_name }}</span>
+                            </a>
+                        </td>
+                        <td>{{ item.description }}</td>
+                        <td class="text-right">
+                            {{ item.member_count }}
+                        </td>
+                        <td>{{ item.group_add_date }}</td>
+                        <td>{{ item.group_update_date }}</td>
+                        @if (isAdmin) {
+                            <td class="text-center">
+                                <div class="tbl-btn-group">
+                                    <a
+                                        (click)="onDelete(item)"
+                                        class="del"
+                                        title="{{ 'label.delete' | translate }}"
+                                        ><i class="fas fa-trash-alt"></i
+                                    ></a>
+                                </div>
+                            </td>
+                        }
+                    </tr>
+                    }
+                </tbody>
+                } @else {
+                <tfoot>
+                    <tr>
+                        <td [attr.colspan]="isAdmin ? 6 : 5">{{ "message.no_data" | translate }}</td>
+                    </tr>
+                </tfoot>
+                }
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+        <app-pagination
+            [page]="currentPage"
+            [totalRow]="searchResultCount"
+            (changePage)="onPaginationChange($event)"
+        >
+        </app-pagination>
+    </div>
+</div>

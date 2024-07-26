@@ -1,0 +1,209 @@
+@if (isEdit) {
+<app-content-header
+    [pageTitle]="'label.edit' | translate"
+    [breadcrumbs]="breadcrumbsEdit"></app-content-header>
+} @else {
+<app-content-header
+    [pageTitle]="'label.create' | translate"
+    [breadcrumbs]="breadcrumbsCreate"></app-content-header>
+}
+<div
+    class="card"
+    id="user-create">
+    <div class="card-body">
+        <form
+            [formGroup]="form"
+            (ngSubmit)="onSaveUser()">
+            <div class="action-box">
+                <div class="btns-box">
+                    @if (isEdit) {
+                    <button
+                        (click)="onResetPassword()"
+                        class="btn btn-primary"
+                        type="button">
+                        <i class="fa-solid fa-rotate mr-2"></i>{{ 'label.pw_initial' | translate }}
+                    </button>
+                    }
+                    <button
+                        class="btn btn-primary"
+                        type="submit">
+                        <i class="fa fa-save mr-2"></i>{{ 'label.save' | translate }}
+                    </button>
+                    <button
+                        class="btn btn-primary"
+                        type="button"
+                        (click)="onGoBack()">
+                        <i class="mr-2 fa-solid fa-xmark"></i>{{ 'label.close' | translate }}
+                    </button>
+                </div>
+            </div>
+            <div
+                class="row"
+                *ngIf="Lib.isValidArrayData(validator.errors)">
+                <div class="col-12">
+                    <app-form-errors [errors]="validator.errors"></app-form-errors>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-head-fixed table-form">
+                    <tbody>
+                        <tr>
+                            <td
+                                class="w-90 bg-blue header-cell"
+                                rowspan="5">
+                                {{ 'label.basic_infomation' | translate }}
+                            </td>
+                            <td class="label-cell required bg-dark-blue">
+                                <span>{{ 'label.first_name' | translate }}</span>
+                            </td>
+                            <td class="py-2 align-top minw-120">
+                                <input
+                                    type="text"
+                                    class="full-width form-control"
+                                    [maxLength]="validator.NAME_ML"
+                                    formControlName="user_first_name" />
+                            </td>
+                            <td class="label-cell w-70 required bg-dark-blue">
+                                <span>{{ 'label.last_name' | translate }}</span>
+                            </td>
+                            <td class="py-2 align-top minw-120">
+                                <input
+                                    type="text"
+                                    class="full-width form-control"
+                                    [maxLength]="validator.NAME_ML"
+                                    formControlName="user_last_name" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell required bg-dark-blue">
+                                <span>{{ 'label.employee_no' | translate }}</span>
+                            </td>
+                            <td
+                                colspan="3"
+                                class="py-2">
+                                <input
+                                    type="text"
+                                    class="full-width form-control"
+                                    [maxLength]="validator.EMPLOYEE_NO_ML"
+                                    formControlName="employee_no" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">{{ 'label.affiliation' | translate }}</td>
+                            <td
+                                colspan="3"
+                                class="py-2">
+                                <input
+                                    type="text"
+                                    class="full-width form-control"
+                                    [maxLength]="validator.AFFILIATION_ML"
+                                    formControlName="affiliation" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">{{ 'label.position' | translate }}</td>
+                            <td
+                                colspan="3"
+                                class="py-2">
+                                <input
+                                    type="text"
+                                    class="full-width form-control"
+                                    [maxLength]="validator.POSITION_ML"
+                                    formControlName="position" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell required bg-dark-blue">
+                                <span>{{ 'label.email' | translate }}</span>
+                            </td>
+                            <td
+                                colspan="3"
+                                class="py-2">
+                                <input
+                                    type="text"
+                                    class="full-width form-control"
+                                    [maxLength]="validator.EMAIL_ML"
+                                    formControlName="mail" />
+                            </td>
+                        </tr>
+                        <ng-container formArrayName="role_list">
+                            @for (item of roleListFormArray.controls; track item;
+                            let index = $index; let first = $first) {
+                            <ng-container [formGroupName]="index">
+                                <tr>
+                                    @if (first) {
+                                        <td
+                                            [attr.rowspan]="roleListFormArray.length"
+                                            class="bg-midnight-blue header-cell">
+                                            {{ 'label.permission_setting' | translate }}
+                                        </td>
+                                    }
+                                    <td class="label-cell required bg-dark-blue">
+                                        <span>{{ item.get('office_subname')?.value }}</span>
+                                    </td>
+                                    <td
+                                        colspan="3"
+                                        class="py-2">
+                                        <ng-select
+                                            formControlName="role_id"
+                                            [items]="getRoleListByOffice(item.get('office_id')?.value)"
+                                            [bindLabel]="'role_name'"
+                                            [bindValue]="'role_id'"
+                                            [notFoundText]="'message.no_data' | translate"
+                                            [typeToSearchText]=" 'label.type_to_search' | translate"
+                                            [placeholder]="'label.select_permission' | translate"
+                                            [clearable]="false"
+                                            [appendTo]="'body'"
+                                        ></ng-select>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            }
+                        </ng-container>
+
+                        @if (isEdit) {
+                        <tr>
+                            <td
+                                class="bg-blue header-cell"
+                                rowspan="4">
+                                {{ 'label.management' | translate }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">{{ 'label.user_registration_date' | translate }}</td>
+                            <td
+                                colspan="3"
+                                class="py-2 bg-bady-blue">
+                                {{ userInfo?.add_datetime | date : 'yyyy-MM-dd' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">{{ 'label.basic_information_update_date' | translate }}</td>
+                            <td
+                                colspan="3"
+                                class="py-2 bg-bady-blue">
+                                {{ userInfo?.update_date }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">{{ 'label.permission_setting_update_date' | translate }}</td>
+                            <td
+                                colspan="3"
+                                class="py-2 bg-bady-blue">
+                                {{ userInfo?.role_update_date }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">{{ 'label.password_update_date' | translate }}</td>
+                            <td
+                                colspan="3"
+                                class="py-2 bg-bady-blue">
+                                {{ userInfo?.password_update_date }}
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table -->
+        </form>
+    </div>
+</div>

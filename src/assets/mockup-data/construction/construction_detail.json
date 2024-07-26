@@ -1,0 +1,113 @@
+{
+    "status": "true",
+    "data": {
+        "id": 1,
+        "office_id": 1,
+        "office_name": "事業所A",
+        "status": 1,
+        "construction_plan_name": "工事計画名",
+        "plan_classification": 1,
+        "plan_start_date": "2024/05/03",
+        "plan_end_date": "2024/05/03",
+        "target_building_type": 1,
+        "location_details": "場所詳細",
+        "plan_summary": "計画概要",
+        "create_user": "石川 れん",
+        "add_datetime": "2024/05/02 07:12:34",
+
+        "disseminate_forward_user": "鈴木ひかり",
+        "disseminate_forward_date": "2024/05/03 10:23:26",
+        "disseminate_approval_user1": "田中 かいと",
+        "disseminate_approval_datetime1": "2024/05/04 10:24:26",
+        "disseminate_approval_comment1": "承認",
+        "disseminate_approval_user2": "小林 だいち",
+        "disseminate_approval_datetime2": "2024/05/04 10:25:26",
+        "disseminate_approval_comment2": "承認",
+
+        "complete_forward_user": "鈴木ひかり",
+        "complete_forward_date": "2024/05/03 10:23:26",
+        "complete_approval_user1": "田中 かいと",
+        "complete_approval_datetime1": "2024/05/04 10:24:26",
+        "complete_approval_comment1": "承認",
+        "complete_approval_user2": "小林 だいち",
+        "complete_approval_datetime2": "2024/05/04 10:25:26",
+        "complete_approval_comment2": "承認",
+
+        "individual_construction_list": [
+            {
+                "individual_construction_case_name": "個別工事件名",
+                "construction_type": 1,
+                "internal_person_id": 1,
+                "internal_person_name": "鈴木ひかり",
+                "construction_company": "工事会社",
+                "construction_company_representative": "工事会社担当者",
+                "construction_start_date": "2024/05/15",
+                "construction_end_date": "2024/05/20",
+                "construction_plan": 1,
+                "schedule_list": [
+                    {
+                        "scheduled_date": "2024/05/20",
+                        "target_building_type": 1,
+                        "location_details": "場所詳細",
+                        "dynamic_influence": 1,
+                        "sensor_false_alarm_response": 1,
+                        "admission_procedure": 1,
+                        "traffic_work_area_regulations": 1,
+                        "risk_prediction_response": 1,
+                        "number_of_people": 5,
+                        "complete": 0
+                    },
+                    {
+                        "scheduled_date": "2024/05/21",
+                        "target_building_type": 1,
+                        "location_details": "場所詳細",
+                        "dynamic_influence": 1,
+                        "sensor_false_alarm_response": 1,
+                        "admission_procedure": 1,
+                        "traffic_work_area_regulations": 1,
+                        "risk_prediction_response": 1,
+                        "number_of_people": 5,
+                        "complete": 0
+                    }
+                ]
+            },
+            {
+                "individual_construction_case_name": "個別工事件名",
+                "construction_type": 1,
+                "internal_person_id": 1,
+                "internal_person_name": "鈴木ひかり",
+                "construction_company": "工事会社",
+                "construction_company_representative": "工事会社担当者",
+                "construction_start_date": "2024/05/15",
+                "construction_end_date": "2024/05/20",
+                "construction_plan": 1,
+                "schedule_list": [
+                    {
+                        "scheduled_date": "2024/05/20",
+                        "target_building_type": 1,
+                        "location_details": "場所詳細",
+                        "dynamic_influence": 1,
+                        "sensor_false_alarm_response": 1,
+                        "admission_procedure": 1,
+                        "traffic_work_area_regulations": 1,
+                        "risk_prediction_response": 1,
+                        "number_of_people": 5,
+                        "complete": 0
+                    },
+                    {
+                        "scheduled_date": "2024/05/21",
+                        "target_building_type": 1,
+                        "location_details": "場所詳細",
+                        "dynamic_influence": 1,
+                        "sensor_false_alarm_response": 1,
+                        "admission_procedure": 1,
+                        "traffic_work_area_regulations": 1,
+                        "risk_prediction_response": 1,
+                        "number_of_people": 5,
+                        "complete": 0
+                    }
+                ]
+            }
+        ]
+    }
+}

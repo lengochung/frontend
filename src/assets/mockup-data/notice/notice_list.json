@@ -1,0 +1,306 @@
+{
+    "status": "true",
+	"data":  {
+        "data_source": [
+            {
+                "id": 1,
+                "subject": "件名1",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 2,
+                "subject": "件名2",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 3,
+                "subject": "件名3",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 4,
+                "subject": "件名4",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 5,
+                "subject": "件名5",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 6,
+                "subject": "件名6",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 7,
+                "subject": "件名7",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 8,
+                "subject": "件名8",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 9,
+                "subject": "件名9",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 10,
+                "subject": "件名10",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 11,
+                "subject": "件名11",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 12,
+                "subject": "件名12",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 13,
+                "subject": "件名13",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 14,
+                "subject": "件名14",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 15,
+                "subject": "件名15",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 16,
+                "subject": "件名16",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 17,
+                "subject": "件名17",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 18,
+                "subject": "件名18",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 19,
+                "subject": "件名19",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            },
+            {
+                "id": 20,
+                "subject": "件名20",
+                "office_id": 1,
+                "office_name": "事業所A",
+                "status": 1,
+                "type": 1,
+                "occurrence_datetime": "2023/04/15 08:01:02",
+                "close_datetime": "2023/04/15 10:10:11"
+            }
+        ],
+        "filter_table": {
+            "filter": {
+                "id": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 3,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 4,
+                        "is_checked": true
+                    }
+                ],
+                "subject": [
+                    {
+                        "name": "件名1",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "件名2",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "件名3",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "件名4",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "件名5",
+                        "is_checked": true
+                    }
+                ],
+                "office": [
+                    {
+                        "name": "事業所A",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "事業所B",
+                        "is_checked": true
+                    }
+                ],
+                "status": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    }
+                ],
+                "notice_type": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    }
+                ],
+                "occurrence_date": [
+                    {
+                        "name": "2023/04/15 08:01:02",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "2023/04/15 09:01:02",
+                        "is_checked": true
+                    }
+                ],
+                "close_date": [
+                    {
+                        "name": "2023/04/15 08:01:02",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "2023/04/15 09:01:02",
+                        "is_checked": true
+                    }
+                ]
+            },
+            "sort": {
+                "column": "",
+                "direction": ""
+            }
+        }
+    },
+    "total_row": 200
+}

@@ -1,0 +1,1083 @@
+@if (isEdit) {
+<app-content-header
+    [pageTitle]="'label.detail' | translate"
+    [breadcrumbs]="breadcrumbsDetail"
+></app-content-header>
+} @else {
+<app-content-header
+    [pageTitle]="'label.create' | translate"
+    [breadcrumbs]="breadcrumbsCreate"
+></app-content-header>
+}
+<div class="card" id="construction-detail">
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSave()">
+            <div class="action-box">
+                <div class="btns-box">
+                    <button
+                        (click)="onCreateNew()"
+                        class="btn btn-primary"
+                        type="button"
+                    >
+                        <i class="mr-2 fa-solid fa-plus"></i
+                        >{{ "label.new_request" | translate }}
+                    </button>
+                    <button
+                        (click)="onAddConstructionIndividual()"
+                        class="btn btn-primary"
+                        type="button"
+                    >
+                        <i class="mr-2 fa-solid fa-plus"></i
+                        >{{
+                            "label.addition_individual_construction_work"
+                                | translate
+                        }}
+                    </button>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="mr-2 fa fa-save"></i
+                        >{{ "label.save" | translate }}
+                    </button>
+                    <button class="btn btn-primary" type="button">
+                        <i class="mr-2 fa-solid fa-arrow-right-arrow-left"></i>
+                        {{ "label.forward" | translate }}
+                    </button>
+                    <button
+                        class="btn btn-primary"
+                        type="button"
+                        (click)="onGoBack()"
+                    >
+                        <i class="mr-2 fa-solid fa-xmark"></i
+                        >{{ "label.close" | translate }}
+                    </button>
+                </div>
+            </div>
+            <!-- /.action -->
+            @if (Lib.isValidArrayData(validator.errors)) {
+            <div class="row">
+                <div class="col-12">
+                    <app-form-errors
+                        [errors]="validator.errors"
+                    ></app-form-errors>
+                </div>
+            </div>
+            }
+            <div class="table-responsive">
+                <table class="table table-bordered table-form table-header">
+                    <tbody>
+                        <tr>
+                            <td class="w-110 label-cell bg-dark-blue">
+                                {{ "label.control_number" | translate }}
+                            </td>
+                            <td class="w-110 bg-bady-blue">
+                                {{ constructionInfo?.id }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.office" | translate }}
+                            </td>
+                            <td class="bg-bady-blue">
+                                {{ constructionInfo?.office_name }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.status" | translate }}
+                            </td>
+                            <td class="bg-bady-blue w-130">
+                                {{ getStatusName(constructionInfo?.status) }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.header table -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-head-fixed">
+                    <tbody>
+                        <tr>
+                            <td
+                                class="bg-blue header-cell"
+                                rowspan="7"
+                                colspan="2"
+                            >
+                                <span>{{
+                                    "label.construction_plan_basic_info"
+                                        | translate
+                                }}</span>
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{ "label.form" | translate }}</span>
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ constructionInfo?.create_user }}
+                            </td>
+                            <td class="bg-bady-blue minw-300">
+                                {{ constructionInfo?.add_datetime }}
+                            </td>
+                        </tr>
+                        <!-- /.construction_plan_basic_info -->
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{
+                                    "label.construction_plan_name" | translate
+                                }}</span>
+                            </td>
+                            <td colspan="3">
+                                <input
+                                    formControlName="construction_plan_name"
+                                    type="text"
+                                    class="full-width form-control"
+                                />
+                            </td>
+                        </tr>
+                        <!-- /.construction_plan_name -->
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{
+                                    "label.plan_classification" | translate
+                                }}</span>
+                            </td>
+                            <td class="w-250">
+                                <ng-select
+                                    formControlName="plan_classification"
+                                    [items]="classifyList"
+                                    [bindLabel]="'name'"
+                                    [bindValue]="'id'"
+                                    [notFoundText]="
+                                        'message.no_data' | translate
+                                    "
+                                    [typeToSearchText]="
+                                        'label.type_to_search' | translate
+                                    "
+                                    [appendTo]="'#construction-detail'"
+                                    [clearable]="false"
+                                ></ng-select>
+                            </td>
+                            <!-- /.plan_classification -->
+                            <td colspan="2" class="d-none d-md-table-cell"></td>
+                            <!-- /.space -->
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{
+                                    "label.plan_start_date" | translate
+                                }}</span>
+                            </td>
+                            <td>
+                                <div class="date-picker-group m-0">
+                                    <input
+                                        formControlName="plan_start_date"
+                                        class="form-control control-date-picker input-group-text"
+                                        placeholder="YYYY/MM/DD"
+                                        [readonly]="true"
+                                        name="start_date"
+                                        maxlength="10"
+                                        (click)="planStartDate.toggle()"
+                                        ngbDatepicker
+                                        #planStartDate="ngbDatepicker"
+                                    />
+                                    <div
+                                        class="input-group-append cursor-pointer"
+                                        (click)="planStartDate.toggle()"
+                                    >
+                                        <span class="input-group-text"
+                                            ><i class="fa fa-calendar"></i
+                                        ></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- /.plan_start_date -->
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{
+                                    "label.plan_end_date" | translate
+                                }}</span>
+                            </td>
+                            <td>
+                                <div class="date-picker-group m-0">
+                                    <input
+                                        formControlName="plan_end_date"
+                                        class="form-control control-date-picker input-group-text"
+                                        placeholder="YYYY/MM/DD"
+                                        [readonly]="true"
+                                        name="start_date"
+                                        maxlength="10"
+                                        (click)="planEndDate.toggle()"
+                                        ngbDatepicker
+                                        #planEndDate="ngbDatepicker"
+                                    />
+                                    <div
+                                        class="input-group-append cursor-pointer"
+                                        (click)="planEndDate.toggle()"
+                                    >
+                                        <span class="input-group-text"
+                                            ><i class="fa fa-calendar"></i
+                                        ></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- /.plan_end_date -->
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{
+                                    "label.target_building" | translate
+                                }}</span>
+                            </td>
+                            <td>
+                                <ng-select
+                                    formControlName="target_building_type"
+                                    [items]="buildingList"
+                                    [bindLabel]="'name'"
+                                    [bindValue]="'id'"
+                                    [notFoundText]="
+                                        'message.no_data' | translate
+                                    "
+                                    [typeToSearchText]="
+                                        'label.type_to_search' | translate
+                                    "
+                                    [appendTo]="'#construction-detail'"
+                                    [clearable]="false"
+                                ></ng-select>
+                            </td>
+                            <!-- /.target_building -->
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{
+                                    "label.location_details" | translate
+                                }}</span>
+                            </td>
+                            <td>
+                                <input
+                                    formControlName="location_details"
+                                    type="text"
+                                    class="full-width form-control"
+                                />
+                            </td>
+                            <!-- /.location_details -->
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{
+                                    "label.plan_summary" | translate
+                                }}</span>
+                            </td>
+                            <td colspan="3">
+                                <textarea
+                                    formControlName="plan_summary"
+                                    rows="6"
+                                    class="full-width form-control"
+                                ></textarea>
+                            </td>
+                        </tr>
+                        <!-- /.plan_summary -->
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                <span>{{
+                                    "label.number_individual_construction_cases"
+                                        | translate
+                                }}</span>
+                            </td>
+                            <td>
+                                {{ individualConstructionFormArray.length }}
+                            </td>
+                            <td colspan="2" class="d-none d-md-table-cell"></td>
+                            <!-- /.space -->
+                        </tr>
+                        <!-- /.number_individual_construction_cases -->
+
+                        <ng-container
+                            formArrayName="individual_construction_list"
+                        >
+                            @for (item of
+                            individualConstructionFormArray.controls; track
+                            item; let i = $index; let even = $even; let odd =
+                            $odd;) {
+                            <ng-container [formGroupName]="i">
+                                <tr>
+                                    <td
+                                        class="bg-blue header-cell border-bottom-0"
+                                        rowspan="6"
+                                        colspan="2"
+                                    >
+                                        <span
+                                            >{{
+                                                "label.individual_construction_info"
+                                                    | translate
+                                            }}{{ i + 1 }}</span
+                                        >
+                                    </td>
+                                    <td class="label-cell bg-dark-blue">
+                                        <span>{{
+                                            "label.individual_construction_case_name"
+                                                | translate
+                                        }}</span>
+                                    </td>
+                                    <td colspan="2" class="text-right">
+                                        個別工事件名
+                                    </td>
+                                    <td>
+                                        <input
+                                            formControlName="individual_construction_case_name"
+                                            type="text"
+                                            class="full-width form-control"
+                                        />
+                                    </td>
+                                </tr>
+                                <!-- /.individual_construction_case_name -->
+                                <tr>
+                                    <td class="label-cell bg-dark-blue">
+                                        <span>{{
+                                            "label.construction_type"
+                                                | translate
+                                        }}</span>
+                                    </td>
+                                    <td>
+                                        <ng-select
+                                            formControlName="construction_type"
+                                            [items]="constructionTypeList"
+                                            [bindLabel]="'name'"
+                                            [bindValue]="'id'"
+                                            [notFoundText]="
+                                                'message.no_data' | translate
+                                            "
+                                            [typeToSearchText]="
+                                                'label.type_to_search'
+                                                    | translate
+                                            "
+                                            [appendTo]="'#construction-detail'"
+                                            [clearable]="false"
+                                        ></ng-select>
+                                    </td>
+                                    <!-- /.construction_type -->
+                                    <td class="label-cell bg-dark-blue">
+                                        <span>{{
+                                            "label.internal_person" | translate
+                                        }}</span>
+                                    </td>
+                                    <td>
+                                        <button
+                                            (click)="onSelectUser(i)"
+                                            class="btn bg-blue"
+                                            type="button"
+                                        >
+                                            {{ "label.select" | translate }}
+                                        </button>
+                                        <span class="ml-2">{{
+                                            getInternalName(i)
+                                        }}</span>
+                                    </td>
+                                    <!-- /.internal_person -->
+                                </tr>
+                                <tr>
+                                    <td class="label-cell bg-dark-blue">
+                                        <span>{{
+                                            "label.construction_company"
+                                                | translate
+                                        }}</span>
+                                    </td>
+                                    <td>
+                                        <input
+                                            formControlName="construction_company"
+                                            type="text"
+                                            class="form-control full-width"
+                                        />
+                                    </td>
+                                    <!-- /.construction_type -->
+                                    <td class="label-cell bg-dark-blue">
+                                        <span>{{
+                                            "label.construction_company_representative"
+                                                | translate
+                                        }}</span>
+                                    </td>
+                                    <td>
+                                        <input
+                                            formControlName="construction_company_representative"
+                                            type="text"
+                                            class="form-control full-width"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label-cell bg-dark-blue">
+                                        <span>{{
+                                            "label.construction_start_date"
+                                                | translate
+                                        }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="date-picker-group m-0">
+                                            <input
+                                                formControlName="construction_start_date"
+                                                class="form-control control-date-picker input-group-text"
+                                                placeholder="YYYY/MM/DD"
+                                                [readonly]="true"
+                                                name="start_date"
+                                                maxlength="10"
+                                                (click)="planStartDate.toggle()"
+                                                ngbDatepicker
+                                                #planStartDate="ngbDatepicker"
+                                            />
+                                            <div
+                                                class="input-group-append cursor-pointer"
+                                                (click)="planStartDate.toggle()"
+                                            >
+                                                <span class="input-group-text"
+                                                    ><i
+                                                        class="fa fa-calendar"
+                                                    ></i
+                                                ></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- /.construction_start_date -->
+                                    <td class="label-cell bg-dark-blue">
+                                        <span>{{
+                                            "label.construction_end_date"
+                                                | translate
+                                        }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="date-picker-group m-0">
+                                            <input
+                                                formControlName="construction_end_date"
+                                                class="form-control control-date-picker input-group-text"
+                                                placeholder="YYYY/MM/DD"
+                                                [readonly]="true"
+                                                name="start_date"
+                                                maxlength="10"
+                                                (click)="planEndDate.toggle()"
+                                                ngbDatepicker
+                                                #planEndDate="ngbDatepicker"
+                                            />
+                                            <div
+                                                class="input-group-append cursor-pointer"
+                                                (click)="planEndDate.toggle()"
+                                            >
+                                                <span class="input-group-text"
+                                                    ><i
+                                                        class="fa fa-calendar"
+                                                    ></i
+                                                ></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!-- /.construction_end_date -->
+                                </tr>
+                                <tr>
+                                    <td class="label-cell bg-dark-blue">
+                                        <span>{{
+                                            "label.construction_plan"
+                                                | translate
+                                        }}</span>
+                                    </td>
+                                    <td class="w-250">
+                                        <ng-select
+                                            formControlName="construction_plan"
+                                            [items]="constructionPlanList"
+                                            [bindLabel]="'name'"
+                                            [bindValue]="'id'"
+                                            [notFoundText]="
+                                                'message.no_data' | translate
+                                            "
+                                            [typeToSearchText]="
+                                                'label.type_to_search'
+                                                    | translate
+                                            "
+                                            [appendTo]="'#construction-detail'"
+                                            [clearable]="false"
+                                        ></ng-select>
+                                    </td>
+                                    <!-- /.construction_plan -->
+                                    <td
+                                        colspan="2"
+                                        class="d-none d-md-table-cell"
+                                    ></td>
+                                    <!-- /.space -->
+                                </tr>
+                                <tr class="border-bottom-0">
+                                    <td class="label-cell bg-dark-blue">
+                                        <span>{{
+                                            "label.attached_file" | translate
+                                        }}</span>
+                                    </td>
+                                    <td colspan="3">
+                                        <app-upload></app-upload>
+                                    </td>
+                                </tr>
+                                <!-- /.attachment -->
+
+                                <tr class="border-top-0">
+                                    <td
+                                        class="bg-blue header-cell border-top-0 w-50"
+                                    ></td>
+                                    <td class="bg-dark-blue w-100">
+                                        <span>{{
+                                            "label.construction_date_info"
+                                                | translate
+                                        }}</span>
+                                        <div>
+                                            <div class="date-picker-group m-0">
+                                                <input
+                                                    class="d-none"
+                                                    placeholder="YYYY/MM/DD"
+                                                    [readonly]="true"
+                                                    (dateSelect)="
+                                                        onAddConstructionSchedule(
+                                                            $event,
+                                                            i
+                                                        )
+                                                    "
+                                                    name="start_date"
+                                                    maxlength="10"
+                                                    [positionTarget]="
+                                                        addScheduleBtn
+                                                    "
+                                                    ngbDatepicker
+                                                    #addSchedule="ngbDatepicker"
+                                                />
+                                                <button
+                                                    #addScheduleBtn
+                                                    class="btn bg-blue"
+                                                    type="button"
+                                                    (click)="
+                                                        addSchedule.toggle()
+                                                    "
+                                                >
+                                                    {{
+                                                        "label.addition"
+                                                            | translate
+                                                    }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td colspan="4" class="align-top p-0">
+                                        <table
+                                            class="table table-bordered mb-0"
+                                        >
+                                            <tbody>
+                                                <tr>
+                                                    <td
+                                                        class="bg-dark-blue w-180"
+                                                    >
+                                                        <span>{{
+                                                            "label.scheduled_date"
+                                                                | translate
+                                                        }}</span>
+                                                    </td>
+                                                    <td
+                                                        class="bg-dark-blue w-150"
+                                                    >
+                                                        <span>{{
+                                                            "label.target_building"
+                                                                | translate
+                                                        }}</span>
+                                                    </td>
+                                                    <td
+                                                        class="bg-dark-blue minw-250"
+                                                    >
+                                                        <span>{{
+                                                            "label.location_details"
+                                                                | translate
+                                                        }}</span>
+                                                    </td>
+                                                    <td
+                                                        class="bg-dark-blue w-150"
+                                                    >
+                                                        <span>{{
+                                                            "label.dynamic_influence"
+                                                                | translate
+                                                        }}</span>
+                                                    </td>
+                                                    <td
+                                                        class="bg-dark-blue w-150"
+                                                    >
+                                                        <span>{{
+                                                            "label.sensor_false_alarm_response"
+                                                                | translate
+                                                        }}</span>
+                                                    </td>
+                                                    <td
+                                                        class="bg-dark-blue w-150"
+                                                    >
+                                                        <span>{{
+                                                            "label.admission_procedure"
+                                                                | translate
+                                                        }}</span>
+                                                    </td>
+                                                    <td
+                                                        class="bg-dark-blue w-150"
+                                                    >
+                                                        <span>{{
+                                                            "label.traffic_work_area_regulations"
+                                                                | translate
+                                                        }}</span>
+                                                    </td>
+                                                    <td
+                                                        class="bg-dark-blue w-150"
+                                                    >
+                                                        <span>{{
+                                                            "label.risk_prediction_response"
+                                                                | translate
+                                                        }}</span>
+                                                    </td>
+                                                    <td
+                                                        class="bg-dark-blue w-80 text-right"
+                                                    >
+                                                        <span>{{
+                                                            "label.number_of_people"
+                                                                | translate
+                                                        }}</span>
+                                                    </td>
+                                                    <td
+                                                        class="bg-dark-blue w-150"
+                                                    >
+                                                        <span>{{
+                                                            "label.complete"
+                                                                | translate
+                                                        }}</span>
+                                                    </td>
+                                                </tr>
+                                                <ng-container
+                                                    formArrayName="schedule_list"
+                                                >
+                                                    @for (item of
+                                                    getScheduleConstructionFormArray(i).controls;
+                                                    track item; let j = $index;)
+                                                    {
+                                                    <ng-container
+                                                        [formGroupName]="j"
+                                                    >
+                                                        <ng-template
+                                                            #contextMenu
+                                                            let-schedule
+                                                        >
+                                                            <ul
+                                                                class="d-block dropdown-menu position-static"
+                                                            >
+                                                                <li
+                                                                    (click)="
+                                                                        duplicationSchedule(
+                                                                            schedule.i,
+                                                                            schedule.j
+                                                                        )
+                                                                    "
+                                                                >
+                                                                    <a
+                                                                        class="dropdown-item"
+                                                                        >{{
+                                                                            "label.duplication"
+                                                                                | translate
+                                                                        }}</a
+                                                                    >
+                                                                </li>
+                                                                <li
+                                                                    (click)="
+                                                                        deleteSchedule(
+                                                                            schedule.i,
+                                                                            schedule.j
+                                                                        )
+                                                                    "
+                                                                >
+                                                                    <a
+                                                                        class="dropdown-item"
+                                                                        >{{
+                                                                            "label.del"
+                                                                                | translate
+                                                                        }}</a
+                                                                    >
+                                                                </li>
+                                                            </ul>
+                                                        </ng-template>
+                                                        <tr
+                                                            (contextmenu)="
+                                                                openMenuContext(
+                                                                    $event,
+                                                                    i,
+                                                                    j
+                                                                );
+                                                                $event.preventDefault()
+                                                            "
+                                                        >
+                                                            <td>
+                                                                <span>
+                                                                    {{
+                                                                        item.get(
+                                                                            "scheduled_date"
+                                                                        )?.value
+                                                                    }}
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <ng-select
+                                                                    appStopPropagation
+                                                                    formControlName="target_building_type"
+                                                                    [items]="
+                                                                        buildingList
+                                                                    "
+                                                                    [bindLabel]="
+                                                                        'name'
+                                                                    "
+                                                                    [bindValue]="
+                                                                        'id'
+                                                                    "
+                                                                    [notFoundText]="
+                                                                        'message.no_data'
+                                                                            | translate
+                                                                    "
+                                                                    [typeToSearchText]="
+                                                                        'label.type_to_search'
+                                                                            | translate
+                                                                    "
+                                                                    [appendTo]="
+                                                                        '#construction-detail'
+                                                                    "
+                                                                    [clearable]="
+                                                                        false
+                                                                    "
+                                                                ></ng-select>
+                                                            </td>
+                                                            <td>
+                                                                <input
+                                                                    appStopPropagation
+                                                                    formControlName="location_details"
+                                                                    type="text"
+                                                                    class="full-width form-control"
+                                                                />
+                                                            </td>
+                                                            <td>
+                                                                <ng-select
+                                                                    appStopPropagation
+                                                                    formControlName="dynamic_influence"
+                                                                    [items]="
+                                                                        dynamicInfluenceList
+                                                                    "
+                                                                    [bindLabel]="
+                                                                        'name'
+                                                                    "
+                                                                    [bindValue]="
+                                                                        'id'
+                                                                    "
+                                                                    [notFoundText]="
+                                                                        'message.no_data'
+                                                                            | translate
+                                                                    "
+                                                                    [typeToSearchText]="
+                                                                        'label.type_to_search'
+                                                                            | translate
+                                                                    "
+                                                                    [appendTo]="
+                                                                        '#construction-detail'
+                                                                    "
+                                                                    [clearable]="
+                                                                        false
+                                                                    "
+                                                                ></ng-select>
+                                                            </td>
+                                                            <td>
+                                                                <ng-select
+                                                                    appStopPropagation
+                                                                    formControlName="sensor_false_alarm_response"
+                                                                    [items]="
+                                                                        sensorFalseAlarmResponseList
+                                                                    "
+                                                                    [bindLabel]="
+                                                                        'name'
+                                                                    "
+                                                                    [bindValue]="
+                                                                        'id'
+                                                                    "
+                                                                    [notFoundText]="
+                                                                        'message.no_data'
+                                                                            | translate
+                                                                    "
+                                                                    [typeToSearchText]="
+                                                                        'label.type_to_search'
+                                                                            | translate
+                                                                    "
+                                                                    [appendTo]="
+                                                                        '#construction-detail'
+                                                                    "
+                                                                    [clearable]="
+                                                                        false
+                                                                    "
+                                                                ></ng-select>
+                                                            </td>
+                                                            <td>
+                                                                <ng-select
+                                                                    appStopPropagation
+                                                                    formControlName="admission_procedure"
+                                                                    [items]="
+                                                                        admissionProcedureList
+                                                                    "
+                                                                    [bindLabel]="
+                                                                        'name'
+                                                                    "
+                                                                    [bindValue]="
+                                                                        'id'
+                                                                    "
+                                                                    [notFoundText]="
+                                                                        'message.no_data'
+                                                                            | translate
+                                                                    "
+                                                                    [typeToSearchText]="
+                                                                        'label.type_to_search'
+                                                                            | translate
+                                                                    "
+                                                                    [appendTo]="
+                                                                        '#construction-detail'
+                                                                    "
+                                                                    [clearable]="
+                                                                        false
+                                                                    "
+                                                                ></ng-select>
+                                                            </td>
+                                                            <td>
+                                                                <ng-select
+                                                                    appStopPropagation
+                                                                    formControlName="traffic_work_area_regulations"
+                                                                    [items]="
+                                                                        trafficWorkAreaRegulationsList
+                                                                    "
+                                                                    [bindLabel]="
+                                                                        'name'
+                                                                    "
+                                                                    [bindValue]="
+                                                                        'id'
+                                                                    "
+                                                                    [notFoundText]="
+                                                                        'message.no_data'
+                                                                            | translate
+                                                                    "
+                                                                    [typeToSearchText]="
+                                                                        'label.type_to_search'
+                                                                            | translate
+                                                                    "
+                                                                    [appendTo]="
+                                                                        '#construction-detail'
+                                                                    "
+                                                                    [clearable]="
+                                                                        false
+                                                                    "
+                                                                ></ng-select>
+                                                            </td>
+                                                            <td>
+                                                                <ng-select
+                                                                    appStopPropagation
+                                                                    formControlName="risk_prediction_response"
+                                                                    [items]="
+                                                                        riskPredictionResponseList
+                                                                    "
+                                                                    [bindLabel]="
+                                                                        'name'
+                                                                    "
+                                                                    [bindValue]="
+                                                                        'id'
+                                                                    "
+                                                                    [notFoundText]="
+                                                                        'message.no_data'
+                                                                            | translate
+                                                                    "
+                                                                    [typeToSearchText]="
+                                                                        'label.type_to_search'
+                                                                            | translate
+                                                                    "
+                                                                    [appendTo]="
+                                                                        '#construction-detail'
+                                                                    "
+                                                                    [clearable]="
+                                                                        false
+                                                                    "
+                                                                ></ng-select>
+                                                            </td>
+                                                            <td>
+                                                                <input
+                                                                    appStopPropagation
+                                                                    formControlName="number_of_people"
+                                                                    type="text"
+                                                                    class="full-width form-control text-right"
+                                                                />
+                                                            </td>
+                                                            <td>
+                                                                <ng-select
+                                                                    appStopPropagation
+                                                                    formControlName="complete"
+                                                                    [items]="
+                                                                        completeList
+                                                                    "
+                                                                    [bindLabel]="
+                                                                        'name'
+                                                                    "
+                                                                    [bindValue]="
+                                                                        'id'
+                                                                    "
+                                                                    [notFoundText]="
+                                                                        'message.no_data'
+                                                                            | translate
+                                                                    "
+                                                                    [typeToSearchText]="
+                                                                        'label.type_to_search'
+                                                                            | translate
+                                                                    "
+                                                                    [appendTo]="
+                                                                        '#construction-detail'
+                                                                    "
+                                                                    [clearable]="
+                                                                        false
+                                                                    "
+                                                                ></ng-select>
+                                                            </td>
+                                                        </tr>
+                                                    </ng-container>
+                                                    }
+                                                </ng-container>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            }
+                        </ng-container>
+
+                        <tr>
+                            <td
+                                rowspan="5"
+                                colspan="2"
+                                class="bg-blue header-cell"
+                            >
+                                {{
+                                    "label.judgment_construction_disseminated"
+                                        | translate
+                                }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.forward_proposer" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ constructionInfo?.disseminate_forward_user }}
+                            </td>
+                            <td class="bg-bady-blue">
+                                {{ constructionInfo?.disseminate_forward_date }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="label-cell bg-dark-blue">
+                                {{ "label.approval1" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{
+                                    constructionInfo?.disseminate_approval_user1
+                                }}
+                            </td>
+                            <!-- /.approval user1 -->
+                            <td rowspan="2" class="bg-bady-blue">
+                                {{
+                                    constructionInfo?.disseminate_approval_comment1
+                                }}
+                            </td>
+                            <!-- /.comment1 -->
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{
+                                    constructionInfo?.disseminate_approval_datetime1
+                                }}
+                            </td>
+                            <!-- /.approval datetime1 -->
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="label-cell bg-dark-blue">
+                                {{ "label.approval2" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{
+                                    constructionInfo?.disseminate_approval_user2
+                                }}
+                            </td>
+                            <!-- /.approval user2 -->
+                            <td rowspan="2" class="bg-bady-blue">
+                                {{
+                                    constructionInfo?.disseminate_approval_comment2
+                                }}
+                            </td>
+                            <!-- /.comment2 -->
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{
+                                    constructionInfo?.disseminate_approval_datetime2
+                                }}
+                            </td>
+                            <!-- /.approval datetime2 -->
+                        </tr>
+
+                        <tr>
+                            <td
+                                rowspan="5"
+                                colspan="2"
+                                class="bg-blue header-cell"
+                            >
+                                {{
+                                    "label.judgment_construction_complete"
+                                        | translate
+                                }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.forward_proposer" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ constructionInfo?.complete_forward_user }}
+                            </td>
+                            <td class="bg-bady-blue">
+                                {{ constructionInfo?.complete_forward_date }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="label-cell bg-dark-blue">
+                                {{ "label.approval1" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ constructionInfo?.complete_approval_user1 }}
+                            </td>
+                            <!-- /.approval user1 -->
+                            <td rowspan="2" class="bg-bady-blue">
+                                {{
+                                    constructionInfo?.complete_approval_comment1
+                                }}
+                            </td>
+                            <!-- /.comment1 -->
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{
+                                    constructionInfo?.complete_approval_datetime1
+                                }}
+                            </td>
+                            <!-- /.approval datetime1 -->
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="label-cell bg-dark-blue">
+                                {{ "label.approval2" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{ constructionInfo?.complete_approval_user2 }}
+                            </td>
+                            <!-- /.approval user2 -->
+                            <td rowspan="2" class="bg-bady-blue">
+                                {{
+                                    constructionInfo?.complete_approval_comment2
+                                }}
+                            </td>
+                            <!-- /.comment2 -->
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{
+                                    constructionInfo?.complete_approval_datetime2
+                                }}
+                            </td>
+                            <!-- /.approval datetime2 -->
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- /.table -->
+            </div>
+        </form>
+    </div>
+</div>

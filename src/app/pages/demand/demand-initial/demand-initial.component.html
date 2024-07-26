@@ -1,0 +1,476 @@
+@if (isEdit) {
+<app-content-header
+    [pageTitle]="'label.detail' | translate"
+    [breadcrumbs]="breadcrumbsDetail"
+></app-content-header>
+} @else {
+<app-content-header
+    [pageTitle]="'label.create' | translate"
+    [breadcrumbs]="breadcrumbsCreate"
+></app-content-header>
+}
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSave()">
+            <div class="action-box">
+                <div class="btns-box">
+                    <button
+                        (click)="onCreateNew()"
+                        class="btn btn-primary"
+                        type="button"
+                    >
+                        <i class="mr-2 fa-solid fa-plus"></i
+                        >{{ "label.new_request" | translate }}
+                    </button>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="mr-2 fa fa-save"></i
+                        >{{ "label.save" | translate }}
+                    </button>
+                    <button class="btn btn-primary" type="button">
+                        <i class="mr-2 fa-solid fa-arrow-right-arrow-left"></i>
+                        {{ "label.forward" | translate }}
+                    </button>
+                    <button
+                        class="btn btn-primary"
+                        type="button"
+                        (click)="onGoBack()"
+                    >
+                        <i class="mr-2 fa-solid fa-xmark"></i
+                        >{{ "label.close" | translate }}
+                    </button>
+                </div>
+            </div>
+            <!-- /.action -->
+            @if (Lib.isValidArrayData(validator.errors)) {
+            <div class="row">
+                <div class="col-12">
+                    <app-form-errors
+                        [errors]="validator.errors"
+                    ></app-form-errors>
+                </div>
+            </div>
+            }
+            <div class="table-responsive">
+                <table class="table table-bordered table-form table-header">
+                    <tbody>
+                        <tr>
+                            <td class="w-110 label-cell bg-dark-blue">
+                                {{ "label.control_number" | translate }}
+                            </td>
+                            <td class="w-110 bg-bady-blue">
+                                {{ demandInfo?.id }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.office" | translate }}
+                            </td>
+                            <td class="bg-bady-blue">
+                                {{ demandInfo?.office_name }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.status" | translate }}
+                            </td>
+                            <td class="bg-bady-blue w-130">
+                                {{ getStatusName(demandInfo?.status) }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.header table -->
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="colgroup">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="w-250"></th>
+                            <th class="minw-150"></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2" class="header-cell bg-blue w-110">
+                                {{
+                                    "label.demand_management_items" | translate
+                                }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.contract_power" | translate }}
+                            </td>
+                            <td colspan="5">
+                                <div class="d-flex">
+                                    <input
+                                        formControlName="contract_power"
+                                        type="text"
+                                        class="form-control full-width text-right"
+                                    />
+                                    <span
+                                        class="align-content-center flex-shrink-0 ml-2"
+                                        >{{ "label.kw" | translate }}</span
+                                    >
+                                </div>
+                                @if (form.controls['contract_power'].invalid) {
+                                    <p
+                                        class="control-error"
+                                        errorMessage="contract_power"
+                                    ></p>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.target_demand" | translate }}
+                            </td>
+                            <td colspan="5">
+                                <div class="d-flex">
+                                    <input
+                                        formControlName="target_demand"
+                                        type="text"
+                                        class="form-control full-width text-right"
+                                    />
+                                    <span
+                                        class="align-content-center flex-shrink-0 ml-2"
+                                        >{{ "label.kw" | translate }}</span
+                                    >
+                                </div>
+                                @if (form.controls['target_demand'].invalid) {
+                                    <p
+                                        class="control-error"
+                                        errorMessage="target_demand"
+                                    ></p>
+                                }
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td
+                                [attr.rowspan]="rowspanManager"
+                                class="header-cell bg-blue"
+                            >
+                                {{
+                                    "label.demand_management_items" | translate
+                                }}
+                            </td>
+                            <td
+                                [attr.rowspan]="baseFormArray.length + 2"
+                                class="bg-dark-blue"
+                            >
+                                <div>
+                                    {{ "label.1_base_measures" | translate }}
+                                </div>
+                                <button
+                                    class="btn bg-blue"
+                                    type="button"
+                                    (click)="createBase()"
+                                >
+                                    {{ "label.addition" | translate }}
+                                </button>
+                            </td>
+                            <td class="w-40 bg-dark-blue">
+                                {{ "label.no" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-dark-blue">
+                                {{ "label.measures_details" | translate }}
+                            </td>
+                            <td class="w-100 bg-dark-blue">
+                                {{ "label.reduced_power" | translate }}
+                            </td>
+                            <td class="w-50 bg-dark-blue"></td>
+                        </tr>
+                        <ng-container formArrayName="base_list">
+                            @for (item of baseFormArray.controls; track item;
+                            let i = $index;) {
+                            <ng-container [formGroupName]="i">
+                                <tr>
+                                    <td class="bg-bady-blue text-right">
+                                        {{ i + 1 }}
+                                    </td>
+                                    <td colspan="2">
+                                        <input
+                                            formControlName="measures_details"
+                                            type="text"
+                                            class="form-control full-width"
+                                        />
+                                    </td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <input
+                                                formControlName="reduced_power"
+                                                type="text"
+                                                class="form-control full-width text-right"
+                                            />
+                                            <span
+                                                class="align-content-center flex-shrink-0 ml-2"
+                                                >{{
+                                                    "label.kw" | translate
+                                                }}</span
+                                            >
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="tbl-btn-group">
+                                            <a
+                                                (click)="deleteBase(i)"
+                                                class="del"
+                                                title="{{
+                                                    'label.delete' | translate
+                                                }}"
+                                                ><i class="fas fa-trash-alt"></i
+                                            ></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            }
+                        </ng-container>
+                        <tr>
+                            <td class="bg-bady-blue">-</td>
+                            <td colspan="2" class="bg-bady-blue">-</td>
+                            <td class="bg-bady-blue text-right">
+                                {{getTotalBase()}} {{ "label.kw" | translate }}
+                            </td>
+                            <td class="bg-bady-blue"></td>
+                        </tr>
+                        <tr>
+                            <td
+                                [attr.rowspan]="
+                                    demandResponseFormArray.length + 2
+                                "
+                                class="bg-dark-blue"
+                            >
+                                <div>
+                                    {{
+                                        "label.2_demand_response_measures"
+                                            | translate
+                                    }}
+                                </div>
+                                <button
+                                    class="btn bg-blue"
+                                    type="button"
+                                    (click)="createDemandResponse()"
+                                >
+                                    {{ "label.addition" | translate }}
+                                </button>
+                            </td>
+                            <td class="bg-dark-blue">
+                                {{ "label.no" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-dark-blue">
+                                {{ "label.measures_details" | translate }}
+                            </td>
+                            <td class="bg-dark-blue">
+                                {{ "label.reduced_power" | translate }}
+                            </td>
+                            <td class="bg-dark-blue"></td>
+                        </tr>
+                        <ng-container formArrayName="demand_response_list">
+                            @for (item of demandResponseFormArray.controls;
+                            track item; let i = $index;) {
+                            <ng-container [formGroupName]="i">
+                                <tr>
+                                    <td class="bg-bady-blue text-right">
+                                        {{ i + 1 }}
+                                    </td>
+                                    <td colspan="2">
+                                        <input
+                                            formControlName="measures_details"
+                                            type="text"
+                                            class="form-control full-width"
+                                        />
+                                    </td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <input
+                                                formControlName="reduced_power"
+                                                type="text"
+                                                class="form-control full-width text-right"
+                                            />
+                                            <span
+                                                class="align-content-center flex-shrink-0 ml-2"
+                                                >{{
+                                                    "label.kw" | translate
+                                                }}</span
+                                            >
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="tbl-btn-group">
+                                            <a
+                                                (click)="
+                                                    deleteDemandResponse(i)
+                                                "
+                                                class="del"
+                                                title="{{
+                                                    'label.delete' | translate
+                                                }}"
+                                                ><i class="fas fa-trash-alt"></i
+                                            ></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            }
+                        </ng-container>
+                        <tr>
+                            <td class="bg-bady-blue">-</td>
+                            <td colspan="2" class="bg-bady-blue">-</td>
+                            <td class="bg-bady-blue text-right">
+                                {{getTotalDemandResponse()}} {{ "label.kw" | translate }}
+                            </td>
+                            <td class="bg-bady-blue"></td>
+                        </tr>
+                        <tr>
+                            <td
+                                [attr.rowspan]="
+                                    emergencyResponseListFormArray.length + 2
+                                "
+                                class="bg-dark-blue"
+                            >
+                                <div>
+                                    {{
+                                        "label.3_emergency_response_measures"
+                                            | translate
+                                    }}
+                                </div>
+                                <button
+                                    class="btn bg-blue"
+                                    type="button"
+                                    (click)="createEmergencyResponse()"
+                                >
+                                    {{ "label.addition" | translate }}
+                                </button>
+                            </td>
+                            <td class="bg-dark-blue">
+                                {{ "label.no" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-dark-blue">
+                                {{ "label.measures_details" | translate }}
+                            </td>
+                            <td class="bg-dark-blue">
+                                {{ "label.reduced_power" | translate }}
+                            </td>
+                            <td class="bg-dark-blue"></td>
+                        </tr>
+                        <ng-container formArrayName="emergency_response_list">
+                            @for (item of
+                            emergencyResponseListFormArray.controls; track item;
+                            let i = $index;) {
+                            <ng-container [formGroupName]="i">
+                                <tr>
+                                    <td class="bg-bady-blue text-right">
+                                        {{ i + 1 }}
+                                    </td>
+                                    <td colspan="2">
+                                        <input
+                                            formControlName="measures_details"
+                                            type="text"
+                                            class="form-control full-width"
+                                        />
+                                    </td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <input
+                                                formControlName="reduced_power"
+                                                type="text"
+                                                class="form-control full-width text-right"
+                                            />
+                                            <span
+                                                class="align-content-center flex-shrink-0 ml-2"
+                                                >{{
+                                                    "label.kw" | translate
+                                                }}</span
+                                            >
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="tbl-btn-group">
+                                            <a
+                                                (click)="
+                                                    deleteEmergencyResponse(i)
+                                                "
+                                                class="del"
+                                                title="{{
+                                                    'label.delete' | translate
+                                                }}"
+                                                ><i class="fas fa-trash-alt"></i
+                                            ></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            }</ng-container
+                        >
+                        <tr>
+                            <td class="bg-bady-blue">-</td>
+                            <td colspan="2" class="bg-bady-blue">-</td>
+                            <td class="bg-bady-blue text-right">
+                                {{getTotalEmergencyResponse()}} {{ "label.kw" | translate }}
+                            </td>
+                            <td class="bg-bady-blue"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="5" class="bg-blue header-cell">
+                                {{ "label.approval" | translate }}
+                            </td>
+                            <td class="label-cell bg-dark-blue">
+                                {{ "label.forward" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">{{demandInfo?.forward_user}}</td>
+                            <td class="bg-bady-blue" colspan="3">{{demandInfo?.forward_date}}</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="label-cell bg-dark-blue">
+                                {{ "label.approval1" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{demandInfo?.approval_user1}}
+                            </td>
+                            <!-- /.approval user1 -->
+                            <td
+                                rowspan="2"
+                                colspan="3"
+                                class="bg-bady-blue"
+                            >
+                                {{demandInfo?.approval_comment1}}
+                            </td>
+                            <!-- /.comment1 -->
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{demandInfo?.approval_datetime1}}
+                            </td>
+                            <!-- /.approval datetime1 -->
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="label-cell bg-dark-blue">
+                                {{ "label.approval2" | translate }}
+                            </td>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{demandInfo?.approval_user2}}
+                            </td>
+                            <!-- /.approval user2 -->
+                            <td
+                                rowspan="2"
+                                colspan="3"
+                                class="bg-bady-blue"
+                            >
+                                {{demandInfo?.approval_comment2}}
+                            </td>
+                            <!-- /.comment2 -->
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="bg-bady-blue">
+                                {{demandInfo?.approval_datetime2}}
+                            </td>
+                            <!-- /.approval datetime2 -->
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- /.table -->
+            </div>
+        </form>
+    </div>
+</div>

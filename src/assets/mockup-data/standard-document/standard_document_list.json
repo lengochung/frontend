@@ -1,0 +1,304 @@
+{
+    "status": "true",
+	"data":  {
+        "data_source": [
+            {
+                "id": 1,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 2,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 3,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 4,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 5,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 6,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 7,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 8,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 9,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 10,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 11,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 12,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 13,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 14,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 15,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 16,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 17,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 18,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 19,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            },
+            {
+                "id": 20,
+                "status": 1,
+                "standard_document_name": "標準文書名",
+                "version_number": 1,
+                "standard_classification": "標準分類",
+                "target_business_establishment": "対象事業所",
+                "driven_type": "原動種別",
+                "last_update_date": "2024/05/29 08:01:02"
+            }
+        ],
+        "filter_table": {
+            "filter": {
+                "id": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 3,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 4,
+                        "is_checked": true
+                    }
+                ],
+                "standard_document_name": [
+                    {
+                        "name": "標準文書名A",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "標準文書名B",
+                        "is_checked": true
+                    }
+                ],
+                "status": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    }
+                ],
+                "version_number": [
+                    {
+                        "name": 1,
+                        "is_checked": true
+                    },
+                    {
+                        "name": 2,
+                        "is_checked": true
+                    }
+                ],
+                "standard_classification": [
+                    {
+                        "name": "標準分類1",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "標準分類2",
+                        "is_checked": true
+                    }
+                ],
+                "target_business_establishment": [
+                    {
+                        "name": "対象事業所1",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "対象事業所2",
+                        "is_checked": true
+                    }
+                ],
+                "driven_type": [
+                    {
+                        "name": "原動種別1",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "原動種別2",
+                        "is_checked": true
+                    }
+                ],
+                "last_update_date": [
+                    {
+                        "name": "2024/05/29 08:01:02",
+                        "is_checked": true
+                    },
+                    {
+                        "name": "2024/05/30 08:01:02",
+                        "is_checked": true
+                    }
+                ]
+            },
+            "sort": {
+                "column": "",
+                "direction": ""
+            }
+        }
+    },
+    "total_row": 200
+}
