@@ -77,7 +77,7 @@ export class ModalMalfunctionSelectComponent implements OnInit {
     /**
      * Selected changed
      * @date 2024/07/25 11:20
-     * @author DuyPham
+     * @authorhung.le
      *
      * @public
      * @param {MalfunctionsEntity} item malfunction selected

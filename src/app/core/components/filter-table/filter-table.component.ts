@@ -86,7 +86,7 @@ export class FilterTableComponent implements OnInit, OnDestroy {
 
     /**
      * initial data input
-     * @author DuyPham
+     * @authorhung.le
      *
      * @returns {void}
      */
@@ -153,7 +153,7 @@ export class FilterTableComponent implements OnInit, OnDestroy {
 
     /**
      * Cancel button click
-     * @author DuyPham
+     * @authorhung.le
      *
      * @returns {void}
      */
@@ -163,7 +163,7 @@ export class FilterTableComponent implements OnInit, OnDestroy {
 
     /**
      * Ok button click
-     * @author DuyPham
+     * @authorhung.le
      *
      * @returns {void}
      */
@@ -192,7 +192,7 @@ export class FilterTableComponent implements OnInit, OnDestroy {
 
     /**
      * sort click
-     * @author DuyPham
+     * @authorhung.le
      *
      * @param {SortDirection} sortDirection sortDirection
      * @returns {void}
@@ -207,7 +207,7 @@ export class FilterTableComponent implements OnInit, OnDestroy {
 
     /**
      * open menu change
-     * @author DuyPham
+     * @authorhung.le
      *
      * @param {boolean} isOpen isOpen
      * @returns {void}
@@ -242,7 +242,7 @@ export class FilterTableComponent implements OnInit, OnDestroy {
 
     /**
      * get display checkbox name
-     * @author DuyPham
+     * @authorhung.le
      *
      * @param {string} name name
      * @returns {string} display name
@@ -257,7 +257,7 @@ export class FilterTableComponent implements OnInit, OnDestroy {
 
     /**
      * load more
-     * @author DuyPham
+     * @authorhung.le
      *
      * @returns {void}
      */
@@ -282,7 +282,7 @@ export class FilterTableComponent implements OnInit, OnDestroy {
     /**
      * Clear filter & sort
      * @date 2024-07-18 05:36
-     * @author DuyPham
+     * @authorhung.le
      *
      * @returns {void}
      */

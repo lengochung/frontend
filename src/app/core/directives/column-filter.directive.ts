@@ -16,7 +16,7 @@ export class ColumnFilterDirective implements OnChanges {
 
     /**
      * ngOnChanges
-     * @author DuyPham
+     * @authorhung.le
      *
      * @param {SimpleChanges} changes SimpleChanges
      * @returns {void}

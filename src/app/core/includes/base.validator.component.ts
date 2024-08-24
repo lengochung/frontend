@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 /*
 |--------------------------------------------------------------------------
 | 	Component displaying error message for form control
-|	@author LuyenNguyen 2024/03/04
+|	@author hung.le 2024/03/04
 |--------------------------------------------------------------------------
 |	Use formGroupName:
 |	EX: Declare form group validator

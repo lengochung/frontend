@@ -49,7 +49,7 @@ export class TableFilterDirective implements OnInit, OnChanges, OnDestroy, After
     /**
      * clear all filter & sort
      * @date 2024-07-18 05:33
-     * @author DuyPham
+     * @authorhung.le
      *
      * @returns {void}
      */
@@ -125,7 +125,7 @@ export class TableFilterDirective implements OnInit, OnChanges, OnDestroy, After
 
     /**
      * ngOnChanges
-     * @author DuyPham
+     * @authorhung.le
      *
      * @param {SimpleChanges} changes SimpleChanges
      * @returns {void}

@@ -9,7 +9,7 @@ export class AuthService {
 
     /**
      * Behavior subject storing current login user data (user data in local storage) of the application
-     * @author DuyPham
+     * @authorhung.le
      *
      * @public
      * @type {BehaviorSubject<UserEntity | null>}

@@ -118,30 +118,6 @@
                                     formControlName="mail" />
                             </td>
                         </tr>
-                        <!-- /.email -->
-                        @for (item of userInfo?.role_list; track item; let first = $first) {
-                            <tr>
-                                @if (first) {
-                                    <td
-                                        [attr.rowspan]="userInfo?.role_list?.length"
-                                        class="bg-midnight-blue header-cell">
-                                        {{ 'label.permission_setting' | translate }}
-                                    </td>
-                                }
-                                <td class="label-cell bg-dark-blue py-2">
-                                    <span>{{ item?.office_subname }}</span>
-                                </td>
-                                <td
-                                    colspan="3"
-                                    class="bg-bady-blue">
-                                    @if (item?.role_name) {
-                                        {{ item?.role_name }}
-                                    } @else {
-                                        {{ 'label.can_not_login' | translate}}
-                                    }
-                                </td>
-                            </tr>
-                        }
                         <!-- /.permission -->
                         <tr>
                             <td

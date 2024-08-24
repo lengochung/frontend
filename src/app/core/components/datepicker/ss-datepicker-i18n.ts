@@ -7,18 +7,18 @@ import Constants from '../../../utils/constants';
 
 export class SSDatepickerI18n extends NgbDatepickerI18n {
     getWeekdayLabel(weekday: number): string {
-        return Constants.DATEPICKER_I18N.ja.weekdays[weekday - 1];
+        return Constants.DATEPICKER_I18N.vn.weekdays[weekday - 1];
     }
     getMonthShortName(month: number): string {
-        return Constants.DATEPICKER_I18N.ja.months[month - 1];
+        return Constants.DATEPICKER_I18N.vn.months[month - 1];
     }
     getMonthFullName(month: number): string {
         return this.getMonthShortName(month);
     }
     getDayAriaLabel(date: NgbDateStruct): string {
-        return `${date.year}/${date.month}/${date.day}`;
+        return `${date.day}/${date.month}/${date.year}`;
     }
     format(date: NgbDateStruct): string {
-        return date ? `${date.year}/${date.month}/${date.day}` : '';
+        return date ? `${date.day}/${date.month}/${date.year}` : '';
     }
 }

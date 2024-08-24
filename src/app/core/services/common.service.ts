@@ -12,8 +12,8 @@ export class CommonService extends BaseService{
      * @returns {JsonResultEntity} JsonResultEntity<T> A promise resolving to a JsonResultEntity with the result of the request.
      */
     public async multipleDelete<T>(url: string, params = {}): Promise<JsonResultEntity<T>> {
-        const result =  this.FLHttp.post<T>(url, params);
-        return await this.returnHttpResponsePromise<T>(result);
+        const result =  this.HHttp.post<T>(url, params);
+        return await this.responsePromise<T>(result);
     }
 
     /**
@@ -24,7 +24,7 @@ export class CommonService extends BaseService{
      * @returns {JsonResultEntity} JsonResultEntity<T> A promise resolving to a JsonResultEntity with the result of the request.
      */
     public getData<T>(url: string, params = {}): Observable<JsonResultEntity<T>> {
-        const result =  this.FLHttp.post<T>(url, params);
-        return this.returnHttpResponseObservable<T>(result);
+        const result =  this.HHttp.post<T>(url, params);
+        return this.responseObservable<T>(result);
     }
 }

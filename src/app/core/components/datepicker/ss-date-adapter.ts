@@ -10,9 +10,9 @@ export class SSDateDateAdapter extends NgbDateAdapter<string> {
     }
     const date = value.split(this.DELIMITER);
     return {
-      year: Number(date[0]),
+      year: Number(date[2]),
       month: Number(date[1]),
-      day: Number(date[2]),
+      day: Number(date[0]),
     };
   }
   toModel(date: NgbDateStruct | null): string | null {
@@ -21,6 +21,6 @@ export class SSDateDateAdapter extends NgbDateAdapter<string> {
     }
     const month = date.month <= 9 ? `0${date.month}` : date.month;
     const day = date.day <= 9 ? `0${date.day}` : date.day;
-    return `${date.year}${this.DELIMITER}${month}${this.DELIMITER}${day}`;
+    return `${day}${this.DELIMITER}${month}${this.DELIMITER}${date.year}`;
   }
 }

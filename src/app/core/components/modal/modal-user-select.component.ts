@@ -121,7 +121,7 @@ export class ModalUserSelectComponent implements OnInit, OnDestroy {
 
     /**
      * select changed
-     * @author DuyPham
+     * @authorhung.le
      *
      * @param {UserEntity} user selected user
      * @returns {void}
@@ -184,7 +184,7 @@ export class ModalUserSelectComponent implements OnInit, OnDestroy {
 
     /**
      * fetch more user
-     * @author DuyPham
+     * @authorhung.le
      *
      * @returns {void}
      */

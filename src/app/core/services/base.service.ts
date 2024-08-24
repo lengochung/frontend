@@ -5,7 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { JsonResultEntity } from "../entities";
 import Constants from "../../utils/constants";
 import Lib from "../../utils/lib";
-import { FLHttp, HTTPOptions } from "../../utils/FLHttp";
+import { HHttp, HTTPOptions } from "../../utils/HHttp";
 
 @Injectable({
     providedIn: 'root'
@@ -13,17 +13,17 @@ import { FLHttp, HTTPOptions } from "../../utils/FLHttp";
 export class BaseService {
     public readonly Constants = Constants;
     public readonly Lib = Lib;
-    public readonly FLHttp = inject(FLHttp);
+    public readonly HHttp = inject(HHttp);
     public readonly HTTPOptions = HTTPOptions;
     /**
      * Return the result when receiving data from the API as an Observable
      *
-     * @author LuyenNguyen 2024/03/05
+     * @author hung.le 2024/03/05
      *
      * @param {object} httpResponse    http response Observable
      * @returns {JsonResultEntity}  @var JsonResultEntity
      */
-    protected returnHttpResponseObservable<T>(httpResponse: Observable<JsonResultEntity<T>>): Observable<JsonResultEntity<T>>{
+    protected responseObservable<T>(httpResponse: Observable<JsonResultEntity<T>>): Observable<JsonResultEntity<T>>{
         return httpResponse.pipe(
             map((response: JsonResultEntity<T>) => {
                 if (!response.status || !response.data) {
@@ -42,12 +42,12 @@ export class BaseService {
     /**
      * Return the result when receiving data from the API as promise
      *
-     * @author LuyenNguyen 2024/03/05
+     * @author hung.le 2024/03/05
      *
      * @param {object} httpResponse    JsonResultEntity<T>
      * @returns {JsonResultEntity}  @var JsonResultEntity
      */
-    protected async returnHttpResponsePromise<T>(httpResponse: Observable<JsonResultEntity<T>>): Promise<JsonResultEntity<T>>{
+    protected async responsePromise<T>(httpResponse: Observable<JsonResultEntity<T>>): Promise<JsonResultEntity<T>>{
         try {
             const result = await firstValueFrom(httpResponse);
             if (!result.status) {
@@ -59,7 +59,7 @@ export class BaseService {
             if (!httpError) {
                 return this.Lib.returnJsonResult(false);
             }
-            const httpErrorMessage = this.FLHttp.getErrorMessage(httpError.status);
+            const httpErrorMessage = this.HHttp.getErrorMessage(httpError.status);
             return this.Lib.returnJsonResult<T>(false, httpErrorMessage);
         }
     }

@@ -1,13 +1,13 @@
 {
     "status": "true",
-	"msg": "メールアドレスまたはパスワードが正しくありません。",
+	"msg": "Đăng nhập thành công!",
 	"data": {
 		"user_id": 1,
-		"email": "demo@facility.jp",
-		"pass": "adb9e3995cc776a2cf2d474a992e5e87",
-		"full_name": "Facility",
-		"first_name": "Luyen",
-		"last_name": "Nguyen",
+		"email": "login",
+		"pass": "e10adc3949ba59abbe56e057f20f883e",
+		"full_name": "Le Hung",
+		"first_name": "Le",
+		"last_name": "Hung",
 		"access_token": "zKMkul6CtLt2ev0a1EYrOkfbAzZ3sqTcif7whZlEDKUW1do3CBb3VDhNJfVp8PPndb6rICRmaipLH7HKOcAMNHKtKnQhRigibZAUf2d8+I4="
 	}
 }

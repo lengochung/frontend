@@ -1,5 +1,4 @@
 import BaseEntity from './base.entity';
-import { UserRoleEntity } from './user-role.entity';
 export class UserEntity extends BaseEntity {
     user_id?: number;
     office_id?: number;
@@ -19,7 +18,6 @@ export class UserEntity extends BaseEntity {
     office_name?: string;
     office_subname?: string;
     role_update_date?: string;
-    role_list?: UserRoleEntity[];
     group_office_id?: number;
 
     /**

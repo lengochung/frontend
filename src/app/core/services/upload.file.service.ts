@@ -201,8 +201,8 @@ export class UploadFileService extends BaseService {
     private async save(params: FormData): Promise<JsonResultEntity<UploadFile>> {
         const opts = new this.HTTPOptions();
         opts.isUploadFile = true;
-        const result = this.FLHttp.post<UploadFile>(this.UPLOAD_URL ?? '', params, opts);
-        return await this.returnHttpResponsePromise<UploadFile>(result);
+        const result = this.HHttp.post<UploadFile>(this.UPLOAD_URL ?? '', params, opts);
+        return await this.responsePromise<UploadFile>(result);
     }
     /**
      * Remove file
@@ -212,8 +212,8 @@ export class UploadFileService extends BaseService {
     private async delete(params: FormData): Promise<JsonResultEntity<UploadFile>> {
         const opts = new this.HTTPOptions();
         opts.isUploadFile = true;
-        const result = this.FLHttp.post<UploadFile>(this.DELETE_URL ?? '', params, opts);
-        return await this.returnHttpResponsePromise<UploadFile>(result);
+        const result = this.HHttp.post<UploadFile>(this.DELETE_URL ?? '', params, opts);
+        return await this.responsePromise<UploadFile>(result);
     }
     /**
      * Get files by folderPath
@@ -221,8 +221,8 @@ export class UploadFileService extends BaseService {
      * @returns {JsonResultEntity} @var JsonResultEntity<string> filePath
      */
     public getFiles(params: UploadedDataEntity): Observable<JsonResultEntity<UploadFile[]>> {
-        const result = this.FLHttp.post<UploadFile[]>(params.uploadUrl ?? '', params);
-        return this.returnHttpResponseObservable<UploadFile[]>(result);
+        const result = this.HHttp.post<UploadFile[]>(params.uploadUrl ?? '', params);
+        return this.responseObservable<UploadFile[]>(result);
     }
     /**
      * Download file by file path
@@ -231,7 +231,7 @@ export class UploadFileService extends BaseService {
      * @author hung.le 2024/07/2024
      */
     public downloadFile(params: UploadFile): Observable<JsonResultEntity<UploadFile[]>> {
-        const result = this.FLHttp.post<UploadFile[]>(this.Constants.API_URL.FILES.DOWNLOAD, params);
-        return this.returnHttpResponseObservable<UploadFile[]>(result);
+        const result = this.HHttp.post<UploadFile[]>(this.Constants.API_URL.FILES.DOWNLOAD, params);
+        return this.responseObservable<UploadFile[]>(result);
     }
 }

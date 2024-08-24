@@ -35,7 +35,7 @@ export class TableComponent implements OnInit {
 
     /**
      * update table fixed column
-     * @author DuyPham
+     * @authorhung.le
      *
      * @returns {void}
      */

@@ -78,7 +78,7 @@ export class UploadComponent implements OnInit, OnChanges, OnDestroy {
 
     /**
      * file select change
-     * @author DuyPham
+     * @authorhung.le
      *
      * @param {Event} event event
      * @returns {void}
@@ -156,7 +156,7 @@ export class UploadComponent implements OnInit, OnChanges, OnDestroy {
 
     /**
      * to File base64
-     * @author DuyPham
+     * @authorhung.le
      *
      * @param {File[]} files file
      * @param {UploadFiles[]} selectedFiles selectedFiles
@@ -193,7 +193,7 @@ export class UploadComponent implements OnInit, OnChanges, OnDestroy {
 
     /**
      * Remove file from list
-     * @author DuyPham
+     * @authorhung.le
      *
      * @param {UploadFile} file UploadFile
      * @returns {void}
@@ -222,7 +222,7 @@ export class UploadComponent implements OnInit, OnChanges, OnDestroy {
 
     /**
      * Emit output file
-     * @author DuyPham
+     * @authorhung.le
      * @returns {void}
      */
     private _emitFile(): void {
@@ -231,7 +231,7 @@ export class UploadComponent implements OnInit, OnChanges, OnDestroy {
 
     /**
      * reset file
-     * @author DuyPham
+     * @authorhung.le
      *
      * @public
      * @returns {void}
@@ -248,7 +248,7 @@ export class UploadComponent implements OnInit, OnChanges, OnDestroy {
 
     /**
      * trigger click from parent
-     * @author DuyPham
+     * @authorhung.le
      *
      * @public
      * @returns {void}

@@ -4,8 +4,8 @@
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
     production: false,
-    default_lang: 'ja',
-    api_url_mockup: 'http://localhost:4100/assets/mockup-data/',
+    default_lang: 'vn',
+    api_url_mockup: 'http://localhost:4200/assets/mockup-data/',
     api_url: 'http://localhost:8000/api/v1/',
     api_request_timeout: 60000,
     /** Default toastr notification closing time */

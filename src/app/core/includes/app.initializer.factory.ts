@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 /**
  * requires an exported function for factories
  * load json files in assets.
- * @author LuyenNguyen 2024/03/01
+ * @author hung.le 2024/03/01
  * @param  {HttpClient} httpClient http
  * @return {TranslateHttpLoader} TranslateHttpLoader
  */
@@ -19,8 +19,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 }
 /**
  * ApplicationInitializerFactory
- * 
- * @author LuyenNguyen 2024/03/01
+ *
+ * @author hung.le 2024/03/01
  * @param {TranslateService} translate TranslateService
  * @param {Injector} injector Injector
  * @returns {void}

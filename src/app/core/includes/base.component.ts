@@ -1,7 +1,7 @@
 import { DestroyRef, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
-import { PagesEntity, UserEntity } from '../entities';
+import { UserEntity } from '../entities';
 import Constants from '../../utils/constants';
 import Lib from '../../utils/lib';
 

@@ -1,5 +1,4 @@
 import { Subject } from "rxjs";
-import { DivisionsEntity } from "./divisions.entity";
 
 /**
  * hung.le
@@ -10,7 +9,4 @@ export class SelectLoadingEntity<T> {
     typeHead$: Subject<string> = new Subject<string>();
     page: number = 0;
     list: T[] = [];
-
-    //
-    divisionE?: DivisionsEntity;
 }

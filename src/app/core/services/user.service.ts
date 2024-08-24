@@ -16,7 +16,7 @@ export class UserService extends BaseService {
     *       remember_password: boolean,
     * }
     *
-    * @author LuyenNguyen 2024/03/05
+    * @author hung.le 2024/03/05
     *
     * @returns {returnJsonResult} returnJsonResult<{
     *   id: number,
@@ -27,10 +27,10 @@ export class UserService extends BaseService {
      */
     public async login(params: UserEntity): Promise<JsonResultEntity<UserEntity>> {
         const opts = new this.HTTPOptions();
-        opts.isAccessToken = false;
-        // const result = this.FLHttp.post<UserEntity>(`${environment.api_url_mockup}user/user.json`, params, opts);
-        const result = this.FLHttp.post<UserEntity>(this.Constants.API_URL.USERS.LOGIN, params, opts);
-        return await this.returnHttpResponsePromise<UserEntity>(result);
+        // opts.isAccessToken = false;
+        opts.usingApiUrl = false;
+        const result = this.HHttp.get<UserEntity>(`${environment.api_url_mockup}user/user.json`, params, opts);
+        return await this.responsePromise<UserEntity>(result);
     }
     /**
     * Logout
@@ -38,8 +38,8 @@ export class UserService extends BaseService {
     * @returns {JsonResultEntity} @var JsonResultEntity<boolean>
     */
     public async logout(): Promise<JsonResultEntity<boolean>> {
-        const result = this.FLHttp.post<boolean>(this.Constants.API_URL.USERS.LOGOUT);
-        return await this.returnHttpResponsePromise<boolean>(result);
+        const result = this.HHttp.post<boolean>(this.Constants.API_URL.USERS.LOGOUT);
+        return await this.responsePromise<boolean>(result);
     }
     /**
     * Get user info
@@ -52,8 +52,8 @@ export class UserService extends BaseService {
     public getUserInfo(params: {
         user_id: number
     }): Observable<JsonResultEntity<UserEntity>> {
-        const result = this.FLHttp.post<UserEntity>(this.Constants.API_URL.USERS.USER_INFO, params);
-        return this.returnHttpResponseObservable<UserEntity>(result);
+        const result = this.HHttp.post<UserEntity>(this.Constants.API_URL.USERS.USER_INFO, params);
+        return this.responseObservable<UserEntity>(result);
     }
     /**
     * Get user list
@@ -62,8 +62,8 @@ export class UserService extends BaseService {
     * @returns {JsonResultEntity} @var JsonResultEntity<UserEntity>
     */
     public getAllUserList(params: UserSearchEntity): Observable<JsonResultEntity<UserEntity[]>> {
-        const result = this.FLHttp.post<UserEntity[]>(this.Constants.API_URL.USERS.ALL_LIST, params);
-        return this.returnHttpResponseObservable<UserEntity[]>(result);
+        const result = this.HHttp.post<UserEntity[]>(this.Constants.API_URL.USERS.ALL_LIST, params);
+        return this.responseObservable<UserEntity[]>(result);
     }
 
     /**
@@ -75,8 +75,8 @@ export class UserService extends BaseService {
     public getUserList(params: UserSearchEntity): Observable<JsonResultEntity<UserEntity[]>> {
         // const opts = new this.HTTPOptions();
         // opts.usingApiUrl = false;
-        const result = this.FLHttp.post<UserEntity[]>(this.Constants.API_URL.USERS.ALL_LIST, params);
-        return this.returnHttpResponseObservable<UserEntity[]>(result);
+        const result = this.HHttp.post<UserEntity[]>(this.Constants.API_URL.USERS.ALL_LIST, params);
+        return this.responseObservable<UserEntity[]>(result);
     }
     /**
     * GetUserList by userIds
@@ -85,8 +85,8 @@ export class UserService extends BaseService {
     * @returns {JsonResultEntity} @var JsonResultEntity<UserEntity>
     */
     public getUserListByUserIds(params: UserSearchEntity): Observable<JsonResultEntity<UserEntity[]>> {
-        const result = this.FLHttp.post<UserEntity[]>(this.Constants.API_URL.USERS.LIST_BY_USER_IDS, params);
-        return this.returnHttpResponseObservable<UserEntity[]>(result);
+        const result = this.HHttp.post<UserEntity[]>(this.Constants.API_URL.USERS.LIST_BY_USER_IDS, params);
+        return this.responseObservable<UserEntity[]>(result);
     }
     /**
     * get user list for select
@@ -97,8 +97,8 @@ export class UserService extends BaseService {
     public getUserListSelect(params: UserSearchEntity): Observable<JsonResultEntity<UserEntity[]>> {
         const opts = new this.HTTPOptions();
         opts.showLoading = false;
-        const result = this.FLHttp.post<UserEntity[]>(this.Constants.API_URL.USERS.ALL_LIST, params, opts);
-        return this.returnHttpResponseObservable<UserEntity[]>(result);
+        const result = this.HHttp.post<UserEntity[]>(this.Constants.API_URL.USERS.ALL_LIST, params, opts);
+        return this.responseObservable<UserEntity[]>(result);
     }
 
     /**
@@ -108,8 +108,8 @@ export class UserService extends BaseService {
     * @returns {JsonResultEntity} @var JsonResultEntity<UserEntity>
     */
     public onSave(params: UserEntity): Observable<JsonResultEntity<UserEntity>> {
-        const result = this.FLHttp.post<UserEntity>(this.Constants.API_URL.USERS.SAVE, params);
-        return this.returnHttpResponseObservable<UserEntity>(result);
+        const result = this.HHttp.post<UserEntity>(this.Constants.API_URL.USERS.SAVE, params);
+        return this.responseObservable<UserEntity>(result);
     }
 
     /**
@@ -122,8 +122,8 @@ export class UserService extends BaseService {
     * @returns {JsonResultEntity} @var JsonResultEntity<UserEntity>
     */
     public resetPasswordUser(params: {user_id: number; upd_datetime: string}):Observable<JsonResultEntity<UserEntity>> {
-        const result = this.FLHttp.post<UserEntity>(this.Constants.API_URL.USERS.RESET_PASSWORD, params);
-        return this.returnHttpResponseObservable<UserEntity>(result);
+        const result = this.HHttp.post<UserEntity>(this.Constants.API_URL.USERS.RESET_PASSWORD, params);
+        return this.responseObservable<UserEntity>(result);
     }
 
     /**
@@ -136,13 +136,13 @@ export class UserService extends BaseService {
     * @returns {JsonResultEntity} @var JsonResultEntity<UserEntity>
     */
     public deleteUser(params: {user_id: number; upd_datetime: string}):Observable<JsonResultEntity<UserEntity>> {
-        const result = this.FLHttp.post<UserEntity>(this.Constants.API_URL.USERS.DELETE, params);
-        return this.returnHttpResponseObservable<UserEntity>(result);
+        const result = this.HHttp.post<UserEntity>(this.Constants.API_URL.USERS.DELETE, params);
+        return this.responseObservable<UserEntity>(result);
     }
 
     /**
      * Get user detail
-     * @author DuyPham
+     * @authorhung.le
      *
      * @public
      * @param {object} params {
@@ -155,8 +155,8 @@ export class UserService extends BaseService {
     }): Observable<JsonResultEntity<UserEntity>> {
         const opts = new this.HTTPOptions();
         opts.usingApiUrl = false;
-        const result = this.FLHttp.get<UserEntity>(`${environment.api_url_mockup}user/user_detail.json`, params, opts);
-        return this.returnHttpResponseObservable<UserEntity>(result);
+        const result = this.HHttp.get<UserEntity>(`${environment.api_url_mockup}user/user_detail.json`, params, opts);
+        return this.responseObservable<UserEntity>(result);
     }
 
     /**
@@ -166,8 +166,8 @@ export class UserService extends BaseService {
     * @returns {JsonResultEntity} @var JsonResultEntity<UserEntity>
     */
     public updateProfileUser(params: UserEntity): Observable<JsonResultEntity<UserEntity>> {
-        const result = this.FLHttp.post<UserEntity>(this.Constants.API_URL.USERS.SAVE_PROFILE, params);
-        return this.returnHttpResponseObservable<UserEntity>(result);
+        const result = this.HHttp.post<UserEntity>(this.Constants.API_URL.USERS.SAVE_PROFILE, params);
+        return this.responseObservable<UserEntity>(result);
     }
 
 }

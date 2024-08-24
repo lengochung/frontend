@@ -12,17 +12,17 @@ import { ToastrService } from 'ngx-toastr';
 /**
  * Component for deleting multiple records.
  * To use this component, include it in the template as follows:
- * <app-multiple-delete 
+ * <app-multiple-delete
  * [dataList] = "dataList"
  * [key] = "'key'"
  * [deleteUrl] = "api delete url">
- * </app-multiple-delete> 
- * 
+ * </app-multiple-delete>
+ *
  * Listens to events from the parent component through 'eventsSubject.asObservable()'.
  * The name 'eventsSubject' can be customized by the parent component; see the description of 'eventsSubject' in base.component.ts.
  * Other properties are described below.
- * 
- * @author LuyenNguyen 2024/03/25
+ *
+ * @author hung.le 2024/03/25
  */
 @Component({
     selector: 'app-multiple-delete',
@@ -45,7 +45,7 @@ export class MultipleDeleteComponent implements OnInit, OnDestroy, OnChanges {
     //Confirmation message for delete action
     @Input() deleteMessage = this._translate.instant('message.delete_confirm') as string;
     /**
-     * Key of the object in the list. For example, if the list has objects like [{user_name: 'user1', full_name: 'User1'}], 
+     * Key of the object in the list. For example, if the list has objects like [{user_name: 'user1', full_name: 'User1'}],
      * the key would be 'user_name'.
      */
     @Input() key = "";
@@ -90,7 +90,7 @@ export class MultipleDeleteComponent implements OnInit, OnDestroy, OnChanges {
     /**
      * Executes after Angular sets the input properties.
      * Called before ngOnInit() and whenever one or more data-bound input properties change.
-     * 
+     *
      * @param {SimpleChanges} changes   SimpleChanges
      * @returns {void}
      */
@@ -104,7 +104,7 @@ export class MultipleDeleteComponent implements OnInit, OnDestroy, OnChanges {
     }
     /**
      * Disables the delete button and unchecks the 'check all' checkbox.
-     * 
+     *
      * @returns {void}
      */
     private _resetControl(): void{
@@ -115,12 +115,12 @@ export class MultipleDeleteComponent implements OnInit, OnDestroy, OnChanges {
     }
     /**
      * Listens to events from the parent component.
-     * 
+     *
      * @param {object} data {
      *      event: Event,//the change event object
      *      row_item: object,//the currently selected row when clicking a checkbox in the list
      * }
-     * 
+     *
      * @returns {void}
      */
     public getEvents(data: any): void {
@@ -133,10 +133,10 @@ export class MultipleDeleteComponent implements OnInit, OnDestroy, OnChanges {
     }
     /**
      * Sets the item in the list as checked when clicking on the 'check all' checkbox or an item in the list.
-     * 
+     *
      * @param {object} event     The click event object
      * @param {any} dataE        The selected object in the list
-     * 
+     *
      * @returns {void}
      */
     public onCheckboxChange(event: Event, dataE: any): void {
@@ -152,6 +152,7 @@ export class MultipleDeleteComponent implements OnInit, OnDestroy, OnChanges {
             const checkAll = event.target as HTMLInputElement;
             this.dataList.map((item: any) => {
                 item['is_checked'] = checkAll.checked;
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-return
                 return item;
             });
         } else if (dataE) {
@@ -174,7 +175,7 @@ export class MultipleDeleteComponent implements OnInit, OnDestroy, OnChanges {
     }
     /**
      * Deletes the selected items.
-     * 
+     *
      * @returns {void}
      */
     public onDelete(): void {
@@ -195,6 +196,7 @@ export class MultipleDeleteComponent implements OnInit, OnDestroy, OnChanges {
         }
         const cloneDeleteItems = [...deleteItems];
         //Get the keys in the list
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         const keys = deleteItems.map((item: {[key: string] : any}) => item[this.key]) as Array<string | number>;
         if (!Lib.isValidArrayData(keys)) {
             this.deletedItems.emit(null);

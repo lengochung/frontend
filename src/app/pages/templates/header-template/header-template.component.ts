@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import Lib from '../../../utils/lib';
 import Constants from '../../../utils/constants';
 import { AuthService, MenuService } from '../../../core/services';
 import { MenuEntity, UserEntity } from '../../../core/entities';
-import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 @Component({
     selector: 'app-header-template',
@@ -26,8 +25,6 @@ export class HeaderTemplateComponent implements OnInit, OnDestroy {
     public userLogin: UserEntity = {};
     public userDisplayName: UserEntity | null = null;
     public _authService = inject(AuthService);
-    private _translate = inject(TranslateService);
-    private _toastr = inject(ToastrService);
     /** constructor */
     constructor(
     ) {

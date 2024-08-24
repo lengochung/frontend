@@ -9,7 +9,7 @@ export class SystemMenuService extends BaseService {
 
     /**
      * Get count number system menu
-     * @author DuyPham
+     * @authorhung.le
      *
      * @returns {returnJsonResult} returnJsonResult<SystemMenuEntity[]>>
     * */
@@ -17,8 +17,8 @@ export class SystemMenuService extends BaseService {
         const opts = new this.HTTPOptions();
         opts.usingApiUrl = false;
         const params = {};
-        const result = this.FLHttp.get<SystemMenuEntity[]>(`${environment.api_url_mockup}system-menu/system-menu.json`, params, opts);
-        return this.returnHttpResponseObservable<SystemMenuEntity[]>(result);
+        const result = this.HHttp.get<SystemMenuEntity[]>(`${environment.api_url_mockup}system-menu/system-menu.json`, params, opts);
+        return this.responseObservable<SystemMenuEntity[]>(result);
     }
 
 }
